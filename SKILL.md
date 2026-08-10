@@ -37,9 +37,10 @@ python generation/gen_ideogram4.py \
 
 - Downloads `ideogram-ai/ideogram-4-fp8` on first run (~28 GB).
 - ~15-40 s/image (48-step quality preset) -> roughly 30-70 min for 100.
-- Notes: prompts are fed **verbatim** (no magic-prompt LLM, no API key needed);
-  caption-verifier issues are non-fatal by design (`raise_on_caption_issues=False`).
-  The upstream Hive moderation keys are not used; prompts are benign COCO captions.
+- Notes: each original prompt is preserved verbatim inside a deterministic structured JSON
+  caption, because Ideogram 4 is trained on JSON captions. The wrapper adds no text
+  elements and explicitly disallows captions, logos, signatures, and watermarks.
+  Caption validation is strict; no magic-prompt API or additional API key is needed.
 
 ## 3. Run FLUX.2-dev (2025 generator)
 
@@ -61,6 +62,40 @@ python generation/gen_flux2.py \
   with the real images depends on this).
 - Both scripts are **resumable**: rerun after any crash; existing files are skipped.
 - Do not edit prompts.csv.
+
+## 4a. Boreal realism workflows
+
+Use only the adapter matching the base model. Both commands are resumable and
+preserve the benchmark filenames.
+
+FLUX.2 Boreal (experimental adapter; prompts are passed verbatim):
+
+```bash
+python generation/gen_flux2_boreal.py
+```
+
+- Base: `black-forest-labs/FLUX.2-dev`
+- Adapter: `.hf-boreal-flux2-adapter/boreal-flux-dev2-diffusers.safetensors`
+  (use the Diffusers file, not the ComfyUI conversion)
+- Defaults: LoRA scale 1.0, seed 42, 1024x1024, 50 steps, guidance 4.0
+- Output: `out/flux2boreal/fake`
+
+FLUX.1 Boreal v2 (the model card recommends the `photo` trigger and describes
+v2 as overtrained, hence the lower default adapter scale):
+
+```bash
+python generation/gen_flux1_boreal.py \
+  --prompts generation/prompts.csv \
+  --out out/flux1boreal/fake
+```
+
+- Base: `black-forest-labs/FLUX.1-dev`
+- Adapter: `.hf-boreal-flux1-adapter/boreal-v2.safetensors`
+- Defaults: trigger `photo`, LoRA scale 0.7, seed 42, 1024x1024, 28 steps,
+  guidance 3.5
+
+LoRA loading requires `peft`. For offline runs, point `--model` at a complete
+local snapshot and set `HF_HUB_OFFLINE=1` and `TRANSFORMERS_OFFLINE=1`.
 
 ## 5. Verify and hand results back
 

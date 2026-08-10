@@ -3,6 +3,7 @@
 diffusers>=0.39
 transformers>=5
 accelerate
+peft
 safetensors
 sentencepiece
 protobuf
