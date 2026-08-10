@@ -73,3 +73,5 @@ for i, r in enumerate(rows):
         print(f"[{i+1}/{len(rows)}] FAILED {dst.name}: {type(e).__name__}: {str(e)[:200]}", flush=True)
 
 print(f"DONE generated={done} skipped={skip} failed={fail}", flush=True)
+if fail:
+    sys.exit(1)

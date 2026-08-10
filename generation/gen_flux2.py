@@ -14,7 +14,7 @@ license gate accepted. VRAM: the full bf16 pipeline is ~110 GB; on smaller
 GPUs the script enables model CPU offload automatically (slower but works
 on ~48 GB+; use --no-offload to keep everything on-GPU on large cards).
 """
-import argparse, csv, time
+import argparse, csv, sys, time
 from pathlib import Path
 
 ap = argparse.ArgumentParser()
@@ -51,7 +51,7 @@ for i, r in enumerate(rows):
         skip += 1; continue
     t0 = time.time()
     try:
-        img = pipe(r["prompt"], height=args.size, width=args.size,
+        img = pipe(prompt=r["prompt"], height=args.size, width=args.size,
                    num_inference_steps=args.steps, guidance_scale=args.guidance,
                    generator=torch.Generator("cuda").manual_seed(args.seed)).images[0]
         img.save(dst)
@@ -62,3 +62,5 @@ for i, r in enumerate(rows):
         print(f"[{i+1}/{len(rows)}] FAILED {dst.name}: {type(e).__name__}: {str(e)[:200]}", flush=True)
 
 print(f"DONE generated={done} skipped={skip} failed={fail}", flush=True)
+if fail:
+    sys.exit(1)

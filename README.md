@@ -105,7 +105,7 @@ generator capability.
 
 ```bash
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
-pip install "diffusers>=0.39" transformers accelerate safetensors sentencepiece protobuf pillow
+pip install "diffusers>=0.39" "transformers>=5" accelerate safetensors sentencepiece protobuf pillow
 pip install git+https://github.com/ideogram-oss/ideogram4
 export HF_TOKEN=hf_...   # gates to accept once: FLUX.2-dev + ideogram-4-fp8
 
