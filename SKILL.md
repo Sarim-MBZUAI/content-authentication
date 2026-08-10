@@ -22,7 +22,7 @@ python3 -m venv venv && source venv/bin/activate
 pip install --upgrade pip
 # pick the torch CUDA index matching the machine (cu121/cu124/cu128):
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
-pip install "diffusers>=0.39" transformers accelerate safetensors sentencepiece protobuf pillow
+pip install "diffusers>=0.39" "transformers>=5" accelerate safetensors sentencepiece protobuf pillow
 pip install git+https://github.com/ideogram-oss/ideogram4   # Ideogram 4 inference code
 export HF_TOKEN=hf_...   # token with both gates accepted
 ```
