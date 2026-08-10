@@ -37,9 +37,10 @@ python generation/gen_ideogram4.py \
 
 - Downloads `ideogram-ai/ideogram-4-fp8` on first run (~28 GB).
 - ~15-40 s/image (48-step quality preset) -> roughly 30-70 min for 100.
-- Notes: prompts are fed **verbatim** (no magic-prompt LLM, no API key needed);
-  caption-verifier issues are non-fatal by design (`raise_on_caption_issues=False`).
-  The upstream Hive moderation keys are not used; prompts are benign COCO captions.
+- Notes: each original prompt is preserved verbatim inside a deterministic structured JSON
+  caption, because Ideogram 4 is trained on JSON captions. The wrapper adds no text
+  elements and explicitly disallows captions, logos, signatures, and watermarks.
+  Caption validation is strict; no magic-prompt API or additional API key is needed.
 
 ## 3. Run FLUX.2-dev (2025 generator)
 

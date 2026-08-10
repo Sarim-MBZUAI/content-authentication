@@ -93,7 +93,7 @@ generator capability.
  ┣ 📂 generation/
  ┃ ┣ prompts.csv          ← the fixed 100-prompt benchmark set (filename ↔ prompt)
  ┃ ┣ prompts.txt          ← same prompts, plain text
- ┃ ┣ gen_ideogram4.py     ← Ideogram 4 fp8 · verbatim prompts · seed 42 · resumable
+ ┃ ┣ gen_ideogram4.py     ← Ideogram 4 fp8 · structured captions · seed 42 · resumable
  ┃ ┣ gen_flux2.py         ← FLUX.2-dev · auto CPU-offload on <130 GB GPUs · resumable
  ┃ ┗ slurm/               ← sbatch templates
  ┣ 📂 inversion/          ← RF-Inversion invert+resynthesize for SD2.1 / SD3 / SD3.5
