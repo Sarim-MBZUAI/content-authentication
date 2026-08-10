@@ -63,6 +63,40 @@ python generation/gen_flux2.py \
 - Both scripts are **resumable**: rerun after any crash; existing files are skipped.
 - Do not edit prompts.csv.
 
+## 4a. Boreal realism workflows
+
+Use only the adapter matching the base model. Both commands are resumable and
+preserve the benchmark filenames.
+
+FLUX.2 Boreal (experimental adapter; prompts are passed verbatim):
+
+```bash
+python generation/gen_flux2_boreal.py
+```
+
+- Base: `black-forest-labs/FLUX.2-dev`
+- Adapter: `.hf-boreal-flux2-adapter/boreal-flux-dev2-diffusers.safetensors`
+  (use the Diffusers file, not the ComfyUI conversion)
+- Defaults: LoRA scale 1.0, seed 42, 1024x1024, 50 steps, guidance 4.0
+- Output: `out/flux2boreal/fake`
+
+FLUX.1 Boreal v2 (the model card recommends the `photo` trigger and describes
+v2 as overtrained, hence the lower default adapter scale):
+
+```bash
+python generation/gen_flux1_boreal.py \
+  --prompts generation/prompts.csv \
+  --out out/flux1boreal/fake
+```
+
+- Base: `black-forest-labs/FLUX.1-dev`
+- Adapter: `.hf-boreal-flux1-adapter/boreal-v2.safetensors`
+- Defaults: trigger `photo`, LoRA scale 0.7, seed 42, 1024x1024, 28 steps,
+  guidance 3.5
+
+LoRA loading requires `peft`. For offline runs, point `--model` at a complete
+local snapshot and set `HF_HUB_OFFLINE=1` and `TRANSFORMERS_OFFLINE=1`.
+
 ## 5. Verify and hand results back
 
 ```bash
