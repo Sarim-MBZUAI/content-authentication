@@ -1,0 +1,12 @@
+# install torch first with the CUDA index matching your machine, e.g.:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+diffusers>=0.39
+transformers>=5
+accelerate
+safetensors
+sentencepiece
+protobuf
+pillow
+huggingface_hub
+# Ideogram 4 inference code:
+ideogram4 @ git+https://github.com/ideogram-oss/ideogram4

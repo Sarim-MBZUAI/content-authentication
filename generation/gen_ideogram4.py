@@ -60,7 +60,7 @@ for i, r in enumerate(rows):
         skip += 1; continue
     t0 = time.time()
     try:
-        images = pipe(r["prompt"], height=args.size, width=args.size,
+        images = pipe(prompt=r["prompt"], height=args.size, width=args.size,
                       num_steps=preset.num_steps,
                       guidance_schedule=preset.guidance_schedule,
                       mu=preset.mu, std=preset.std, seed=args.seed,
