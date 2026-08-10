@@ -1,18 +1,17 @@
 # Deepfake-detection benchmark — results
 
-19 detectors x 7 generators. Each cell: 100 real + 100 fake images, prompt-matched,
-seed 42, **normalized to 512x512** (removes the resolution confound between variable-size
-real photos and fixed-square generated images). Threshold 0.5 for probability scores, 0.0 for logits.
+19 detectors x 7 generators. Each cell: 100 real + 100 fake, prompt-matched, seed 42,
+**normalized to 512x512** (removes the real/fake resolution confound). Threshold 0.5 (prob) / 0.0 (logit).
+Column headers show each generator's release year; the first column shows each detector's release year.
 
-**Generators** (release year): SD2.1 (2022), SD3 / SD3.5 / FLUX.1-dev / FLUX.1-dev+Realism-LoRA (2024),
-Boreal-FLUX = FLUX.1-dev + `kudzueye/boreal-flux-dev-v2` community realism LoRA (2024 base),
-HiDream-O1-Image-Dev-2604 (2026).
+**Generators:** SD2.1 (2022); SD3, SD3.5, FLUX.1-dev, FLUX.1-dev+Realism-LoRA (2024);
+Boreal-FLUX = FLUX.1-dev + `kudzueye/boreal-flux-dev-v2` realism LoRA (2024 base); HiDream-O1-Image-Dev-2604 (2026).
 
-**Note:** FIRE and WaRPAD are degenerate at their native threshold (FIRE labels ~everything fake,
-WaRPAD ~everything real) — read them by AUC, not the tables below.
+**Caveat:** FIRE / WaRPAD are degenerate at their threshold (all-fake / all-real) — judge by AUC, not these tables.
 
 ## Table 1 — Balanced accuracy (100 real + 100 fake)
-| Year | Detector | SD2.1 | SD3 | SD3.5 | FLUX-dev | FLUX-LoRA | Boreal-FLUX | HiDream-O1 |
+
+| Det. year | Detector | SD2.1 (2022) | SD3 (2024) | SD3.5 (2024) | FLUX-dev (2024) | FLUX-LoRA (2024) | Boreal-FLUX (2024) | HiDream-O1 (2026) |
 |---|---|---|---|---|---|---|---|---|
 | 2023 | UFD | 0.495 | 0.500 | 0.505 | 0.485 | 0.490 | 0.490 | 0.490 |
 | 2024 | FatFormer | 0.495 | 0.490 | 0.630 | 0.490 | 0.510 | 0.595 | 0.570 |
@@ -36,9 +35,9 @@ WaRPAD ~everything real) — read them by AUC, not the tables below.
 
 ## Table 2 — Fake-recall (fakes only; fraction of generated images caught)
 
-The honest metric for adapter evasion: balanced accuracy hides it because a detector that
-nails the real half still looks fine when it misses a third of the fakes.
-| Year | Detector | SD2.1 | SD3 | SD3.5 | FLUX-dev | FLUX-LoRA | Boreal-FLUX | HiDream-O1 |
+Balanced accuracy hides adapter evasion (a detector that nails reals looks fine even missing a third of fakes); fake-recall exposes it.
+
+| Det. year | Detector | SD2.1 (2022) | SD3 (2024) | SD3.5 (2024) | FLUX-dev (2024) | FLUX-LoRA (2024) | Boreal-FLUX (2024) | HiDream-O1 (2026) |
 |---|---|---|---|---|---|---|---|---|
 | 2023 | UFD | 0.010 | 0.010 | 0.020 | 0.000 | 0.000 | 0.010 | 0.010 |
 | 2024 | FatFormer | 0.000 | 0.000 | 0.280 | 0.010 | 0.060 | 0.220 | 0.170 |
@@ -60,22 +59,21 @@ nails the real half still looks fine when it misses a third of the fakes.
 | 2026 | PROBE | 1.000 | 0.330 | 0.870 | 0.000 | 0.020 | 0.000 | 0.140 |
 | 2026 | SICA | 0.930 | 0.960 | 0.980 | 0.980 | 0.820 | 0.630 | 1.000 |
 
-## Table 3 — FLUX.2-dev top-3 (partial: plain n=65, boreal n=69, fake-recall)
+## Table 3 — FLUX.2-dev top-3 (fake-recall; FLUX.2 = 2025 · plain n=79, boreal n=84, generation ongoing)
 
-FLUX.2-dev (2025, 32B) plain vs FLUX.2-dev + `kudzueye/boreal-flux-dev2` LoRA. Generation still running.
+FLUX.2-dev vs FLUX.2-dev + `kudzueye/boreal-flux-dev2` LoRA.
 
-| Detector | FLUX2-plain | FLUX2-boreal |
+| Detector (year) | FLUX2-plain (2025) | FLUX2-boreal (2025) |
 |---|---|---|
-| SICA | 0.908 (n=65) | 0.478 (n=69) |
-| D3 | 0.862 (n=65) | 0.580 (n=69) |
-| OmniAID | 0.523 (n=65) | 0.130 (n=69) |
+| SICA (2026) | 0.91 | 0.43 |
+| D3 (2026) | 0.90 | 0.52 |
+| OmniAID (2026) | 0.53 | 0.13 |
 
 ## Key findings
 
-- **Best detectors overall:** SICA (0.936 mean acc), D3 (0.883), OmniAID (0.864).
-- **A community realism LoRA (Boreal) is the strongest attack.** It drops the top detectors far below
-  their FLUX.1-dev performance — OmniAID fake-recall 0.81 -> 0.16, SICA 0.98 -> 0.63, PROBE -> 0.00 —
-  while the clean 2026 foundation model HiDream-O1 is caught about as well as FLUX.1-dev. The threat is
-  the cheap adapter, not model recency.
-- **The effect transfers to FLUX.2:** Boreal-dev2 drops OmniAID 0.52 -> 0.13, SICA 0.91 -> 0.48 (partial).
-- **FerretNet** is the lone Boreal-robust detector (~0.98 on both new generators).
+- **Best detectors:** SICA (0.936 mean acc), D3 (0.883), OmniAID (0.864).
+- **A community realism LoRA (Boreal) is the strongest attack**, not model recency: it drops top detectors far below their
+  FLUX.1-dev level (OmniAID fake-recall 0.81->0.16, SICA 0.98->0.63, PROBE->0.00), while the clean 2026 foundation model
+  HiDream-O1 is caught about as well as FLUX.1-dev.
+- **Transfers to FLUX.2:** Boreal-dev2 drops OmniAID 0.53->0.13, SICA 0.91->0.43, D3 0.90->0.52.
+- **FerretNet** is the lone Boreal-robust detector (~0.98).
