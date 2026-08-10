@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+venv/
+out/
+*.log
+*.safetensors
+*.ckpt
+*.pth
+.env
+nohup.out
