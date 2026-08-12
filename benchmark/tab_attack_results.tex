@@ -1,0 +1,48 @@
+\begin{table}[h]
+\caption{Results before/after PGD ($\epsilon=\frac{8}{255}$) on 2{,}000 images showing correctly classified fake/real images, accuracies, and attack success rates.}
+\label{tab:attack_results}
+\setlength{\tabcolsep}{2pt}
+    \centering
+        \resizebox{\linewidth}{!}{%
+        \begin{tabular}{l ccc ccc cc}
+        \toprule
+        & \multicolumn{3}{c}{\textbf{Before attack}}
+        & \multicolumn{3}{c}{\textbf{After attack}}
+        & \multicolumn{2}{c}{\textbf{Attack success (\%)}} \\
+        \cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-9}
+        \textbf{Model}
+        & \shortstack{Correct\\fake}
+        & \shortstack{Correct\\real}
+        & \shortstack{Acc.\\(\%)}
+        & \shortstack{Correct\\fake}
+        & \shortstack{Correct\\real}
+        & \shortstack{Acc.\\(\%)}
+        & \shortstack{on\\fake}
+        & \shortstack{on\\real} \\
+        \midrule
+        UFD~\cite{ufd}       & 1   & 974 & 48.75 & 0  & 0  & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        FreqNet\cite{fakedetect6}  & 53  & 995 & 52.40 & 0  & 0  & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        NPR~\cite{npr}       & 86  & 653 & 36.95 & 0  & 0  & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        FatFormer~\cite{fatformer} & 1   & 987 & 49.40 & 0  & 0  & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        D3~\cite{d3}         & 736 & 942 & \cellcolor{green!15}83.90 & 24 & 11 & \cellcolor{yellow!20}1.75 & 96.7  & 98.8  \\
+        C2PClip~\cite{c2pclip}             & 51  & 949 & 50.00 & 0  & 2  & \cellcolor{red!12}\textbf{0.10} & 100.0 & 99.8  \\
+        \midrule
+        AEROBLADE~\cite{aeroblade}          & - & - & - & - & - & - & - & - \\
+        FIRE~\cite{fire}                    & - & - & - & - & - & - & - & - \\
+        DDA~\cite{dda}                      & - & - & - & - & - & - & - & - \\
+        FerretNet~\cite{ferretnet}          & - & - & - & - & - & - & - & - \\
+        WaRPAD~\cite{warpad}                & - & - & - & - & - & - & - & - \\
+        AllPatchesMatter~\cite{allpatches}  & - & - & - & - & - & - & - & - \\
+        OmniAID~\cite{omniaid}              & - & - & - & - & - & - & - & - \\
+        PGC~\cite{pgc}                      & - & - & - & - & - & - & - & - \\
+        PROBE~\cite{probe}                  & - & - & - & - & - & - & - & - \\
+        DEAR~\cite{dear}                    & - & - & - & - & - & - & - & - \\
+        DGS-Net~\cite{dgsnet}               & - & - & - & - & - & - & - & - \\
+        SICA~\cite{sica}                    & - & - & - & - & - & - & - & - \\
+        IAPL~\cite{iapl}                    & - & - & - & - & - & - & - & - \\
+        ForensicConcept~\cite{forensicconcept} & - & - & - & - & - & - & - & - \\
+        \bottomrule
+        \end{tabular}
+        }% End resizebox
+        \vspace{-.35cm}
+\end{table}
