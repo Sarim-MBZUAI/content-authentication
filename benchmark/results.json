@@ -1,0 +1,2005 @@
+{
+ "description": "20 detectors x 10 generators; 100 real + 100 fake per cell, 512px normalized, seed 42",
+ "cells": [
+  {
+   "detector": "AEROBLADE",
+   "detector_year": 2024,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.8396,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AEROBLADE",
+   "detector_year": 2024,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.9465,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AEROBLADE",
+   "detector_year": 2024,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.7001,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AEROBLADE",
+   "detector_year": 2024,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.7066,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AEROBLADE",
+   "detector_year": 2024,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.9063,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AllPatchesMatter",
+   "detector_year": 2026,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.58,
+   "auroc": 0.8942,
+   "fake_recall": 0.19
+  },
+  {
+   "detector": "AllPatchesMatter",
+   "detector_year": 2026,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.595,
+   "auroc": 0.9039,
+   "fake_recall": 0.2
+  },
+  {
+   "detector": "AllPatchesMatter",
+   "detector_year": 2026,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.525,
+   "auroc": 0.7584,
+   "fake_recall": 0.06
+  },
+  {
+   "detector": "AllPatchesMatter",
+   "detector_year": 2026,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.55,
+   "auroc": 0.7928,
+   "fake_recall": 0.11
+  },
+  {
+   "detector": "AllPatchesMatter",
+   "detector_year": 2026,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.975,
+   "auroc": 0.9978,
+   "fake_recall": 0.98
+  },
+  {
+   "detector": "C2P-CLIP",
+   "detector_year": 2025,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.505,
+   "auroc": 0.65,
+   "fake_recall": 0.02
+  },
+  {
+   "detector": "C2P-CLIP",
+   "detector_year": 2025,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.525,
+   "auroc": 0.731,
+   "fake_recall": 0.06
+  },
+  {
+   "detector": "C2P-CLIP",
+   "detector_year": 2025,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.4632,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "C2P-CLIP",
+   "detector_year": 2025,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.342,
+   "fake_recall": 0.01
+  },
+  {
+   "detector": "C2P-CLIP",
+   "detector_year": 2025,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.6,
+   "auroc": 0.8671,
+   "fake_recall": 0.21
+  },
+  {
+   "detector": "D3",
+   "detector_year": 2025,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.875,
+   "auroc": 0.9637,
+   "fake_recall": 0.81
+  },
+  {
+   "detector": "D3",
+   "detector_year": 2025,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.96,
+   "auroc": 0.992,
+   "fake_recall": 0.94
+  },
+  {
+   "detector": "D3",
+   "detector_year": 2025,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.81,
+   "auroc": 0.9592,
+   "fake_recall": 0.66
+  },
+  {
+   "detector": "D3",
+   "detector_year": 2025,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.825,
+   "auroc": 0.9379,
+   "fake_recall": 0.68
+  },
+  {
+   "detector": "D3",
+   "detector_year": 2025,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.985,
+   "auroc": 0.9969,
+   "fake_recall": 0.98
+  },
+  {
+   "detector": "DDA",
+   "detector_year": 2025,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.61,
+   "auroc": 0.8774,
+   "fake_recall": 0.22
+  },
+  {
+   "detector": "DDA",
+   "detector_year": 2025,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.68,
+   "auroc": 0.9337,
+   "fake_recall": 0.38
+  },
+  {
+   "detector": "DDA",
+   "detector_year": 2025,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.97,
+   "auroc": 0.9981,
+   "fake_recall": 0.96
+  },
+  {
+   "detector": "DDA",
+   "detector_year": 2025,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.665,
+   "auroc": 0.8918,
+   "fake_recall": 0.36
+  },
+  {
+   "detector": "DDA",
+   "detector_year": 2025,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.975,
+   "auroc": 0.9995,
+   "fake_recall": 0.95
+  },
+  {
+   "detector": "DEAR",
+   "detector_year": 2026,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.69,
+   "auroc": 0.9661,
+   "fake_recall": 0.38
+  },
+  {
+   "detector": "DEAR",
+   "detector_year": 2026,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.82,
+   "auroc": 0.9898,
+   "fake_recall": 0.64
+  },
+  {
+   "detector": "DEAR",
+   "detector_year": 2026,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.805,
+   "auroc": 0.9933,
+   "fake_recall": 0.61
+  },
+  {
+   "detector": "DEAR",
+   "detector_year": 2026,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.52,
+   "auroc": 0.8569,
+   "fake_recall": 0.04
+  },
+  {
+   "detector": "DEAR",
+   "detector_year": 2026,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.94,
+   "auroc": 0.994,
+   "fake_recall": 0.88
+  },
+  {
+   "detector": "DGS-Net",
+   "detector_year": 2026,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.665,
+   "auroc": 0.8029,
+   "fake_recall": 0.51
+  },
+  {
+   "detector": "DGS-Net",
+   "detector_year": 2026,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.925,
+   "auroc": 0.9721,
+   "fake_recall": 0.95
+  },
+  {
+   "detector": "DGS-Net",
+   "detector_year": 2026,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.455,
+   "auroc": 0.4126,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "DGS-Net",
+   "detector_year": 2026,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.425,
+   "auroc": 0.3202,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "DGS-Net",
+   "detector_year": 2026,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.94,
+   "auroc": 0.997,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "FIRE",
+   "detector_year": 2025,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.542,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "FIRE",
+   "detector_year": 2025,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.6213,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "FIRE",
+   "detector_year": 2025,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.495,
+   "auroc": 0.3982,
+   "fake_recall": 0.99
+  },
+  {
+   "detector": "FIRE",
+   "detector_year": 2025,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.4458,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "FIRE",
+   "detector_year": 2025,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.5626,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "FatFormer",
+   "detector_year": 2024,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.51,
+   "auroc": 0.6253,
+   "fake_recall": 0.06
+  },
+  {
+   "detector": "FatFormer",
+   "detector_year": 2024,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.49,
+   "auroc": 0.5939,
+   "fake_recall": 0.01
+  },
+  {
+   "detector": "FatFormer",
+   "detector_year": 2024,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.495,
+   "auroc": 0.2266,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "FatFormer",
+   "detector_year": 2024,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.49,
+   "auroc": 0.362,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "FatFormer",
+   "detector_year": 2024,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.63,
+   "auroc": 0.7728,
+   "fake_recall": 0.28
+  },
+  {
+   "detector": "FerretNet",
+   "detector_year": 2025,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.95,
+   "auroc": 0.9909,
+   "fake_recall": 0.92
+  },
+  {
+   "detector": "FerretNet",
+   "detector_year": 2025,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.935,
+   "auroc": 0.9951,
+   "fake_recall": 0.88
+  },
+  {
+   "detector": "FerretNet",
+   "detector_year": 2025,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.505,
+   "auroc": 0.3521,
+   "fake_recall": 0.01
+  },
+  {
+   "detector": "FerretNet",
+   "detector_year": 2025,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.49,
+   "auroc": 0.2501,
+   "fake_recall": 0.01
+  },
+  {
+   "detector": "FerretNet",
+   "detector_year": 2025,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.985,
+   "auroc": 0.9987,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "ForensicConcept",
+   "detector_year": 2026,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.54,
+   "auroc": 0.7605,
+   "fake_recall": 0.08
+  },
+  {
+   "detector": "ForensicConcept",
+   "detector_year": 2026,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.625,
+   "auroc": 0.9277,
+   "fake_recall": 0.28
+  },
+  {
+   "detector": "ForensicConcept",
+   "detector_year": 2026,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.55,
+   "auroc": 0.8721,
+   "fake_recall": 0.11
+  },
+  {
+   "detector": "ForensicConcept",
+   "detector_year": 2026,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.585,
+   "auroc": 0.7824,
+   "fake_recall": 0.18
+  },
+  {
+   "detector": "ForensicConcept",
+   "detector_year": 2026,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.89,
+   "auroc": 0.9897,
+   "fake_recall": 0.79
+  },
+  {
+   "detector": "FreqNet",
+   "detector_year": 2024,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.84,
+   "auroc": 0.935,
+   "fake_recall": 0.72
+  },
+  {
+   "detector": "FreqNet",
+   "detector_year": 2024,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.825,
+   "auroc": 0.9214,
+   "fake_recall": 0.72
+  },
+  {
+   "detector": "FreqNet",
+   "detector_year": 2024,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.465,
+   "auroc": 0.229,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "FreqNet",
+   "detector_year": 2024,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.445,
+   "auroc": 0.3278,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "FreqNet",
+   "detector_year": 2024,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.9,
+   "auroc": 0.9602,
+   "fake_recall": 0.89
+  },
+  {
+   "detector": "IAPL",
+   "detector_year": 2026,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.49,
+   "auroc": 0.47,
+   "fake_recall": 0.02
+  },
+  {
+   "detector": "IAPL",
+   "detector_year": 2026,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.4924,
+   "fake_recall": 0.02
+  },
+  {
+   "detector": "IAPL",
+   "detector_year": 2026,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.2386,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "IAPL",
+   "detector_year": 2026,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.515,
+   "auroc": 0.2707,
+   "fake_recall": 0.06
+  },
+  {
+   "detector": "IAPL",
+   "detector_year": 2026,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.625,
+   "auroc": 0.7498,
+   "fake_recall": 0.27
+  },
+  {
+   "detector": "NPR",
+   "detector_year": 2024,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.755,
+   "auroc": 0.8809,
+   "fake_recall": 0.98
+  },
+  {
+   "detector": "NPR",
+   "detector_year": 2024,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.8,
+   "auroc": 0.96,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "NPR",
+   "detector_year": 2024,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.35,
+   "auroc": 0.2263,
+   "fake_recall": 0.12
+  },
+  {
+   "detector": "NPR",
+   "detector_year": 2024,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.37,
+   "auroc": 0.3492,
+   "fake_recall": 0.28
+  },
+  {
+   "detector": "NPR",
+   "detector_year": 2024,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.745,
+   "auroc": 0.9292,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "OmniAID",
+   "detector_year": 2026,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.86,
+   "auroc": 0.9499,
+   "fake_recall": 0.72
+  },
+  {
+   "detector": "OmniAID",
+   "detector_year": 2026,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.895,
+   "auroc": 0.9731,
+   "fake_recall": 0.81
+  },
+  {
+   "detector": "OmniAID",
+   "detector_year": 2026,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.98,
+   "auroc": 0.9929,
+   "fake_recall": 0.98
+  },
+  {
+   "detector": "OmniAID",
+   "detector_year": 2026,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.915,
+   "auroc": 0.9677,
+   "fake_recall": 0.83
+  },
+  {
+   "detector": "OmniAID",
+   "detector_year": 2026,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.925,
+   "auroc": 0.9794,
+   "fake_recall": 0.85
+  },
+  {
+   "detector": "PGC",
+   "detector_year": 2026,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.535,
+   "auroc": 0.7935,
+   "fake_recall": 0.12
+  },
+  {
+   "detector": "PGC",
+   "detector_year": 2026,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.54,
+   "auroc": 0.7494,
+   "fake_recall": 0.15
+  },
+  {
+   "detector": "PGC",
+   "detector_year": 2026,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.81,
+   "auroc": 0.8954,
+   "fake_recall": 0.65
+  },
+  {
+   "detector": "PGC",
+   "detector_year": 2026,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.575,
+   "auroc": 0.5578,
+   "fake_recall": 0.21
+  },
+  {
+   "detector": "PGC",
+   "detector_year": 2026,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.74,
+   "auroc": 0.8826,
+   "fake_recall": 0.53
+  },
+  {
+   "detector": "PROBE",
+   "detector_year": 2026,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.51,
+   "auroc": 0.7868,
+   "fake_recall": 0.02
+  },
+  {
+   "detector": "PROBE",
+   "detector_year": 2026,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.495,
+   "auroc": 0.8169,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "PROBE",
+   "detector_year": 2026,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.995,
+   "auroc": 0.9996,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "PROBE",
+   "detector_year": 2026,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.66,
+   "auroc": 0.9579,
+   "fake_recall": 0.33
+  },
+  {
+   "detector": "PROBE",
+   "detector_year": 2026,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.93,
+   "auroc": 0.9967,
+   "fake_recall": 0.87
+  },
+  {
+   "detector": "SICA",
+   "detector_year": 2026,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.905,
+   "auroc": 0.9712,
+   "fake_recall": 0.82
+  },
+  {
+   "detector": "SICA",
+   "detector_year": 2026,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.97,
+   "auroc": 0.9979,
+   "fake_recall": 0.98
+  },
+  {
+   "detector": "SICA",
+   "detector_year": 2026,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.955,
+   "auroc": 0.9964,
+   "fake_recall": 0.93
+  },
+  {
+   "detector": "SICA",
+   "detector_year": 2026,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.96,
+   "auroc": 0.9884,
+   "fake_recall": 0.96
+  },
+  {
+   "detector": "SICA",
+   "detector_year": 2026,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.985,
+   "auroc": 0.9985,
+   "fake_recall": 0.98
+  },
+  {
+   "detector": "UFD",
+   "detector_year": 2023,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.49,
+   "auroc": 0.5095,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "UFD",
+   "detector_year": 2023,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.485,
+   "auroc": 0.4573,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "UFD",
+   "detector_year": 2023,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.495,
+   "auroc": 0.7466,
+   "fake_recall": 0.01
+  },
+  {
+   "detector": "UFD",
+   "detector_year": 2023,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.5566,
+   "fake_recall": 0.01
+  },
+  {
+   "detector": "UFD",
+   "detector_year": 2023,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.505,
+   "auroc": 0.6413,
+   "fake_recall": 0.02
+  },
+  {
+   "detector": "WaRPAD",
+   "detector_year": 2025,
+   "generator": "FLUX-LoRA",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.7604,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "WaRPAD",
+   "detector_year": 2025,
+   "generator": "FLUX-dev",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.7178,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "WaRPAD",
+   "detector_year": 2025,
+   "generator": "SD2.1",
+   "generator_year": 2022,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.8514,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "WaRPAD",
+   "detector_year": 2025,
+   "generator": "SD3",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.7751,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "WaRPAD",
+   "detector_year": 2025,
+   "generator": "SD3.5",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.8328,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AEROBLADE",
+   "detector_year": 2024,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.7022,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AEROBLADE",
+   "detector_year": 2024,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.7907,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AllPatchesMatter",
+   "detector_year": 2026,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.635,
+   "auroc": 0.8838,
+   "fake_recall": 0.28
+  },
+  {
+   "detector": "AllPatchesMatter",
+   "detector_year": 2026,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.745,
+   "auroc": 0.9652,
+   "fake_recall": 0.5
+  },
+  {
+   "detector": "C2P-CLIP",
+   "detector_year": 2025,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.515,
+   "auroc": 0.6276,
+   "fake_recall": 0.04
+  },
+  {
+   "detector": "C2P-CLIP",
+   "detector_year": 2025,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.525,
+   "auroc": 0.7977,
+   "fake_recall": 0.06
+  },
+  {
+   "detector": "D3",
+   "detector_year": 2025,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.81,
+   "auroc": 0.9747,
+   "fake_recall": 0.64
+  },
+  {
+   "detector": "D3",
+   "detector_year": 2025,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.915,
+   "auroc": 0.9885,
+   "fake_recall": 0.86
+  },
+  {
+   "detector": "DDA",
+   "detector_year": 2025,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.62,
+   "auroc": 0.9096,
+   "fake_recall": 0.26
+  },
+  {
+   "detector": "DDA",
+   "detector_year": 2025,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.825,
+   "auroc": 0.9823,
+   "fake_recall": 0.67
+  },
+  {
+   "detector": "DEAR",
+   "detector_year": 2026,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.565,
+   "auroc": 0.9058,
+   "fake_recall": 0.13
+  },
+  {
+   "detector": "DEAR",
+   "detector_year": 2026,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.71,
+   "auroc": 0.9845,
+   "fake_recall": 0.42
+  },
+  {
+   "detector": "DGS-Net",
+   "detector_year": 2026,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.845,
+   "auroc": 0.9384,
+   "fake_recall": 0.8
+  },
+  {
+   "detector": "DGS-Net",
+   "detector_year": 2026,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.91,
+   "auroc": 0.9691,
+   "fake_recall": 0.94
+  },
+  {
+   "detector": "FIRE",
+   "detector_year": 2025,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.5265,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "FIRE",
+   "detector_year": 2025,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.5669,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "FatFormer",
+   "detector_year": 2024,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.595,
+   "auroc": 0.8041,
+   "fake_recall": 0.22
+  },
+  {
+   "detector": "FatFormer",
+   "detector_year": 2024,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.57,
+   "auroc": 0.7802,
+   "fake_recall": 0.17
+  },
+  {
+   "detector": "FerretNet",
+   "detector_year": 2025,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.98,
+   "auroc": 0.9991,
+   "fake_recall": 0.97
+  },
+  {
+   "detector": "FerretNet",
+   "detector_year": 2025,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.98,
+   "auroc": 0.9989,
+   "fake_recall": 0.97
+  },
+  {
+   "detector": "ForensicConcept",
+   "detector_year": 2026,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.635,
+   "auroc": 0.9002,
+   "fake_recall": 0.3
+  },
+  {
+   "detector": "ForensicConcept",
+   "detector_year": 2026,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.62,
+   "auroc": 0.9576,
+   "fake_recall": 0.27
+  },
+  {
+   "detector": "FreqNet",
+   "detector_year": 2024,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.81,
+   "auroc": 0.9059,
+   "fake_recall": 0.69
+  },
+  {
+   "detector": "FreqNet",
+   "detector_year": 2024,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.785,
+   "auroc": 0.8929,
+   "fake_recall": 0.64
+  },
+  {
+   "detector": "IAPL",
+   "detector_year": 2026,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.535,
+   "auroc": 0.7834,
+   "fake_recall": 0.09
+  },
+  {
+   "detector": "IAPL",
+   "detector_year": 2026,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.505,
+   "auroc": 0.6645,
+   "fake_recall": 0.03
+  },
+  {
+   "detector": "NPR",
+   "detector_year": 2024,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.8,
+   "auroc": 0.9518,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "NPR",
+   "detector_year": 2024,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.8,
+   "auroc": 0.9539,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "OmniAID",
+   "detector_year": 2026,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.57,
+   "auroc": 0.6568,
+   "fake_recall": 0.16
+  },
+  {
+   "detector": "OmniAID",
+   "detector_year": 2026,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.905,
+   "auroc": 0.9871,
+   "fake_recall": 0.83
+  },
+  {
+   "detector": "PGC",
+   "detector_year": 2026,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.54,
+   "auroc": 0.6759,
+   "fake_recall": 0.15
+  },
+  {
+   "detector": "PGC",
+   "detector_year": 2026,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.695,
+   "auroc": 0.8755,
+   "fake_recall": 0.46
+  },
+  {
+   "detector": "PROBE",
+   "detector_year": 2026,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.495,
+   "auroc": 0.7252,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "PROBE",
+   "detector_year": 2026,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.565,
+   "auroc": 0.9635,
+   "fake_recall": 0.14
+  },
+  {
+   "detector": "SICA",
+   "detector_year": 2026,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.795,
+   "auroc": 0.9366,
+   "fake_recall": 0.63
+  },
+  {
+   "detector": "SICA",
+   "detector_year": 2026,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.98,
+   "auroc": 0.9995,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "UFD",
+   "detector_year": 2023,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.49,
+   "auroc": 0.5158,
+   "fake_recall": 0.01
+  },
+  {
+   "detector": "UFD",
+   "detector_year": 2023,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.49,
+   "auroc": 0.4587,
+   "fake_recall": 0.01
+  },
+  {
+   "detector": "WaRPAD",
+   "detector_year": 2025,
+   "generator": "Boreal-FLUX",
+   "generator_year": 2024,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.6426,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "WaRPAD",
+   "detector_year": 2025,
+   "generator": "HiDream-O1",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.878,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AEROBLADE",
+   "detector_year": 2024,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.775,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AEROBLADE",
+   "detector_year": 2024,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.8274,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AllPatchesMatter",
+   "detector_year": 2026,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.645,
+   "auroc": 0.8401,
+   "fake_recall": 0.3
+  },
+  {
+   "detector": "AllPatchesMatter",
+   "detector_year": 2026,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.855,
+   "auroc": 0.9705,
+   "fake_recall": 0.72
+  },
+  {
+   "detector": "C2P-CLIP",
+   "detector_year": 2025,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.505,
+   "auroc": 0.5207,
+   "fake_recall": 0.02
+  },
+  {
+   "detector": "C2P-CLIP",
+   "detector_year": 2025,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.6861,
+   "fake_recall": 0.01
+  },
+  {
+   "detector": "D3",
+   "detector_year": 2025,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.76,
+   "auroc": 0.8742,
+   "fake_recall": 0.54
+  },
+  {
+   "detector": "D3",
+   "detector_year": 2025,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.93,
+   "auroc": 0.9875,
+   "fake_recall": 0.89
+  },
+  {
+   "detector": "DDA",
+   "detector_year": 2025,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.695,
+   "auroc": 0.8566,
+   "fake_recall": 0.41
+  },
+  {
+   "detector": "DDA",
+   "detector_year": 2025,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.85,
+   "auroc": 0.9734,
+   "fake_recall": 0.72
+  },
+  {
+   "detector": "DEAR",
+   "detector_year": 2026,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.57,
+   "auroc": 0.9103,
+   "fake_recall": 0.14
+  },
+  {
+   "detector": "DEAR",
+   "detector_year": 2026,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.705,
+   "auroc": 0.9671,
+   "fake_recall": 0.41
+  },
+  {
+   "detector": "DGS-Net",
+   "detector_year": 2026,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.89,
+   "auroc": 0.9429,
+   "fake_recall": 0.86
+  },
+  {
+   "detector": "DGS-Net",
+   "detector_year": 2026,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.95,
+   "auroc": 0.9708,
+   "fake_recall": 0.98
+  },
+  {
+   "detector": "FIRE",
+   "detector_year": 2025,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.4932,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "FIRE",
+   "detector_year": 2025,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.5986,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "FatFormer",
+   "detector_year": 2024,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.52,
+   "auroc": 0.6635,
+   "fake_recall": 0.07
+  },
+  {
+   "detector": "FatFormer",
+   "detector_year": 2024,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.525,
+   "auroc": 0.7155,
+   "fake_recall": 0.08
+  },
+  {
+   "detector": "FerretNet",
+   "detector_year": 2025,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.985,
+   "auroc": 0.9978,
+   "fake_recall": 0.98
+  },
+  {
+   "detector": "FerretNet",
+   "detector_year": 2025,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.87,
+   "auroc": 0.9826,
+   "fake_recall": 0.75
+  },
+  {
+   "detector": "ForensicConcept",
+   "detector_year": 2026,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.58,
+   "auroc": 0.8032,
+   "fake_recall": 0.19
+  },
+  {
+   "detector": "ForensicConcept",
+   "detector_year": 2026,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.68,
+   "auroc": 0.9617,
+   "fake_recall": 0.39
+  },
+  {
+   "detector": "FreqNet",
+   "detector_year": 2024,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.745,
+   "auroc": 0.8453,
+   "fake_recall": 0.56
+  },
+  {
+   "detector": "FreqNet",
+   "detector_year": 2024,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.83,
+   "auroc": 0.9328,
+   "fake_recall": 0.73
+  },
+  {
+   "detector": "IAPL",
+   "detector_year": 2026,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.5526,
+   "fake_recall": 0.02
+  },
+  {
+   "detector": "IAPL",
+   "detector_year": 2026,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.5752,
+   "fake_recall": 0.02
+  },
+  {
+   "detector": "NPR",
+   "detector_year": 2024,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.8,
+   "auroc": 0.9457,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "NPR",
+   "detector_year": 2024,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.8,
+   "auroc": 0.9525,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "OmniAID",
+   "detector_year": 2026,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.575,
+   "auroc": 0.649,
+   "fake_recall": 0.17
+  },
+  {
+   "detector": "OmniAID",
+   "detector_year": 2026,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.72,
+   "auroc": 0.8381,
+   "fake_recall": 0.46
+  },
+  {
+   "detector": "PGC",
+   "detector_year": 2026,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.495,
+   "auroc": 0.6407,
+   "fake_recall": 0.06
+  },
+  {
+   "detector": "PGC",
+   "detector_year": 2026,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.56,
+   "auroc": 0.7751,
+   "fake_recall": 0.19
+  },
+  {
+   "detector": "PROBE",
+   "detector_year": 2026,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.51,
+   "auroc": 0.7694,
+   "fake_recall": 0.03
+  },
+  {
+   "detector": "PROBE",
+   "detector_year": 2026,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.555,
+   "auroc": 0.9058,
+   "fake_recall": 0.12
+  },
+  {
+   "detector": "SICA",
+   "detector_year": 2026,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.705,
+   "auroc": 0.9075,
+   "fake_recall": 0.45
+  },
+  {
+   "detector": "SICA",
+   "detector_year": 2026,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.95,
+   "auroc": 0.9895,
+   "fake_recall": 0.94
+  },
+  {
+   "detector": "UFD",
+   "detector_year": 2023,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.485,
+   "auroc": 0.4193,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "UFD",
+   "detector_year": 2023,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.49,
+   "auroc": 0.486,
+   "fake_recall": 0.01
+  },
+  {
+   "detector": "WaRPAD",
+   "detector_year": 2025,
+   "generator": "FLUX2-boreal",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.7635,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "WaRPAD",
+   "detector_year": 2025,
+   "generator": "FLUX2-plain",
+   "generator_year": 2025,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.7113,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AEROBLADE",
+   "detector_year": 2024,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.6368,
+   "fake_recall": 0.0
+  },
+  {
+   "detector": "AllPatchesMatter",
+   "detector_year": 2026,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.92,
+   "auroc": 0.9803,
+   "fake_recall": 0.85
+  },
+  {
+   "detector": "C2P-CLIP",
+   "detector_year": 2025,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.51,
+   "auroc": 0.8032,
+   "fake_recall": 0.03
+  },
+  {
+   "detector": "D3",
+   "detector_year": 2025,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.84,
+   "auroc": 0.9673,
+   "fake_recall": 0.71
+  },
+  {
+   "detector": "DDA",
+   "detector_year": 2025,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.565,
+   "auroc": 0.8886,
+   "fake_recall": 0.15
+  },
+  {
+   "detector": "DEAR",
+   "detector_year": 2026,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.51,
+   "auroc": 0.7882,
+   "fake_recall": 0.02
+  },
+  {
+   "detector": "DGS-Net",
+   "detector_year": 2026,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.93,
+   "auroc": 0.9623,
+   "fake_recall": 0.94
+  },
+  {
+   "detector": "FIRE",
+   "detector_year": 2025,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.4651,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "FatFormer",
+   "detector_year": 2024,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.605,
+   "auroc": 0.823,
+   "fake_recall": 0.24
+  },
+  {
+   "detector": "FerretNet",
+   "detector_year": 2025,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.995,
+   "auroc": 1.0,
+   "fake_recall": 1.0
+  },
+  {
+   "detector": "ForensicConcept",
+   "detector_year": 2026,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.74,
+   "auroc": 0.9689,
+   "fake_recall": 0.51
+  },
+  {
+   "detector": "FreqNet",
+   "detector_year": 2024,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.81,
+   "auroc": 0.9059,
+   "fake_recall": 0.69
+  },
+  {
+   "detector": "IAPL",
+   "detector_year": 2026,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.61,
+   "auroc": 0.8647,
+   "fake_recall": 0.24
+  },
+  {
+   "detector": "NPR",
+   "detector_year": 2024,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.795,
+   "auroc": 0.9419,
+   "fake_recall": 0.99
+  },
+  {
+   "detector": "OmniAID",
+   "detector_year": 2026,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.505,
+   "auroc": 0.5515,
+   "fake_recall": 0.03
+  },
+  {
+   "detector": "PGC",
+   "detector_year": 2026,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.59,
+   "auroc": 0.7399,
+   "fake_recall": 0.25
+  },
+  {
+   "detector": "PROBE",
+   "detector_year": 2026,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.54,
+   "auroc": 0.864,
+   "fake_recall": 0.09
+  },
+  {
+   "detector": "SICA",
+   "detector_year": 2026,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.7,
+   "auroc": 0.9142,
+   "fake_recall": 0.44
+  },
+  {
+   "detector": "UFD",
+   "detector_year": 2023,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.4208,
+   "fake_recall": 0.03
+  },
+  {
+   "detector": "WaRPAD",
+   "detector_year": 2025,
+   "generator": "GPTimage2-photoreal",
+   "generator_year": 2026,
+   "n": 200,
+   "accuracy": 0.5,
+   "auroc": 0.5653,
+   "fake_recall": 0.0
+  }
+ ]
+}
