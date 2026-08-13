@@ -1,5 +1,5 @@
 \begin{table}[t]
-\caption{Results before/after PGD ($\epsilon=\frac{8}{255}$) on \textbf{New\_benchmark} (1{,}000 fake + 1{,}000 real, $512{\times}512$). Correctly classified fake/real counts, accuracies, and attack success rates. $\dagger$: threshold-degenerate detector (score has no natural 0.5 cut). ``$-$'' attack-success cells: too few clean-correct samples or obfuscated-gradient backfire (FreqNet's frequency saturation reads any $\ell_\infty$ perturbation as fake). AEROBLADE/WaRPAD run on a 300-image subset.}
+\caption{Results before/after PGD ($\epsilon=\frac{8}{255}$) on \textbf{New\_benchmark} (1{,}000 fake + 1{,}000 real, $512{\times}512$). Following standard practice, only samples classified correctly \emph{before} the attack are perturbed, so accuracy can only drop. Attack success is the fraction of those correct samples flipped. $\dagger$: threshold-degenerate detector (score has no natural $0.5$ cut). ``$-$'': no sample of that class was correct pre-attack. AEROBLADE and WaRPAD are evaluated on a 300-image subset (heavy per-image cost).}
 \label{tab:attack_results}
 \setlength{\tabcolsep}{2pt}
     \centering
@@ -11,26 +11,21 @@
         & \multicolumn{2}{c}{\textbf{Attack success (\%)}} \\
         \cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-9}
         \textbf{Model}
-        & \shortstack{Correct\\fake}
-        & \shortstack{Correct\\real}
-        & \shortstack{Acc.\\(\%)}
-        & \shortstack{Correct\\fake}
-        & \shortstack{Correct\\real}
-        & \shortstack{Acc.\\(\%)}
-        & \shortstack{on\\fake}
-        & \shortstack{on\\real} \\
+        & \shortstack{Correct\\fake} & \shortstack{Correct\\real} & \shortstack{Acc.\\(\%)}
+        & \shortstack{Correct\\fake} & \shortstack{Correct\\real} & \shortstack{Acc.\\(\%)}
+        & \shortstack{on\\fake} & \shortstack{on\\real} \\
         \midrule
         UFD~\cite{ufd} & 11 & 984 & 49.75 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
-        FreqNet~\cite{freqnet} & 2 & 988 & 49.50 & 795 & 0 & 39.75 & - & 100.0 \\
-        NPR~\cite{npr} & 84 & 789 & 43.65 & 7 & 0 & \cellcolor{red!12}\textbf{0.35} & 91.7 & 100.0 \\
-        FatFormer~\cite{fatformer} & 1 & 996 & 49.85 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & - & 100.0 \\
+        FreqNet~\cite{freqnet} & 2 & 988 & 49.50 & 1 & 0 & \cellcolor{red!12}\textbf{0.05} & 50.0 & 100.0 \\
+        NPR~\cite{npr} & 84 & 789 & 43.65 & 1 & 0 & \cellcolor{red!12}\textbf{0.05} & 98.8 & 100.0 \\
+        FatFormer~\cite{fatformer} & 1 & 996 & 49.85 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
         AEROBLADE$^\dagger$~\cite{aeroblade} & 118 & 118 & 78.67 & 0 & 3 & \cellcolor{yellow!20}1.00 & 100.0 & 97.5 \\
         C2PClip~\cite{c2pclip} & 0 & 998 & 49.90 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & - & 100.0 \\
         D3~\cite{d3} & 726 & 967 & \cellcolor{green!15}84.65 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
         FIRE$^\dagger$~\cite{fire} & 998 & 0 & 49.90 & 1 & 0 & \cellcolor{red!12}\textbf{0.05} & 99.9 & - \\
         DDA~\cite{dda} & 576 & 975 & 77.55 & 0 & 4 & \cellcolor{red!12}\textbf{0.20} & 100.0 & 99.6 \\
         FerretNet~\cite{ferretnet} & 40 & 962 & 50.10 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
-        WaRPAD$^\dagger$~\cite{warpad} & 106 & 106 & 70.67 & 8 & 0 & \cellcolor{yellow!20}2.67 & 92.5 & 100.0 \\
+        WaRPAD$^\dagger$~\cite{warpad} & 106 & 106 & 70.67 & 3 & 0 & \cellcolor{yellow!20}1.00 & 97.2 & 100.0 \\
         APM~\cite{allpatchesmatter} & 34 & 987 & 51.05 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
         OmniAID~\cite{omniaid} & 917 & 948 & \cellcolor{green!15}93.25 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
         PGC~\cite{pgc} & 304 & 951 & 62.75 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
