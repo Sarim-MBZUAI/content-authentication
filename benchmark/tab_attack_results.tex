@@ -1,5 +1,5 @@
-\begin{table}[h]
-\caption{Results before/after PGD ($\epsilon=\frac{8}{255}$) on 2{,}000 images showing correctly classified fake/real images, accuracies, and attack success rates.}
+\begin{table}[t]
+\caption{Results before/after PGD ($\epsilon=\frac{8}{255}$) on \textbf{New\_benchmark} (1{,}000 fake + 1{,}000 real, $512{\times}512$). Correctly classified fake/real counts, accuracies, and attack success rates. $\dagger$: threshold-degenerate detector (score has no natural 0.5 cut). ``$-$'' attack-success cells: too few clean-correct samples or obfuscated-gradient backfire (FreqNet's frequency saturation reads any $\ell_\infty$ perturbation as fake). AEROBLADE/WaRPAD run on a 300-image subset.}
 \label{tab:attack_results}
 \setlength{\tabcolsep}{2pt}
     \centering
@@ -20,27 +20,26 @@
         & \shortstack{on\\fake}
         & \shortstack{on\\real} \\
         \midrule
-        UFD~\cite{ufd}       & 1   & 974 & 48.75 & 0  & 0  & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
-        FreqNet\cite{fakedetect6}  & 53  & 995 & 52.40 & 0  & 0  & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
-        NPR~\cite{npr}       & 86  & 653 & 36.95 & 0  & 0  & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
-        FatFormer~\cite{fatformer} & 1   & 987 & 49.40 & 0  & 0  & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
-        D3~\cite{d3}         & 736 & 942 & \cellcolor{green!15}83.90 & 24 & 11 & \cellcolor{yellow!20}1.75 & 96.7  & 98.8  \\
-        C2PClip~\cite{c2pclip}             & 51  & 949 & 50.00 & 0  & 2  & \cellcolor{red!12}\textbf{0.10} & 100.0 & 99.8  \\
-        \midrule
-        AEROBLADE~\cite{aeroblade}          & - & - & - & - & - & - & - & - \\
-        FIRE~\cite{fire}                    & - & - & - & - & - & - & - & - \\
-        DDA~\cite{dda}                      & - & - & - & - & - & - & - & - \\
-        FerretNet~\cite{ferretnet}          & - & - & - & - & - & - & - & - \\
-        WaRPAD~\cite{warpad}                & - & - & - & - & - & - & - & - \\
-        AllPatchesMatter~\cite{allpatches}  & - & - & - & - & - & - & - & - \\
-        OmniAID~\cite{omniaid}              & - & - & - & - & - & - & - & - \\
-        PGC~\cite{pgc}                      & - & - & - & - & - & - & - & - \\
-        PROBE~\cite{probe}                  & - & - & - & - & - & - & - & - \\
-        DEAR~\cite{dear}                    & - & - & - & - & - & - & - & - \\
-        DGS-Net~\cite{dgsnet}               & - & - & - & - & - & - & - & - \\
-        SICA~\cite{sica}                    & - & - & - & - & - & - & - & - \\
-        IAPL~\cite{iapl}                    & - & - & - & - & - & - & - & - \\
-        ForensicConcept~\cite{forensicconcept} & - & - & - & - & - & - & - & - \\
+        UFD~\cite{ufd} & 11 & 984 & 49.75 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        FreqNet~\cite{freqnet} & 2 & 988 & 49.50 & 795 & 0 & 39.75 & - & 100.0 \\
+        NPR~\cite{npr} & 84 & 789 & 43.65 & 7 & 0 & \cellcolor{red!12}\textbf{0.35} & 91.7 & 100.0 \\
+        FatFormer~\cite{fatformer} & 1 & 996 & 49.85 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & - & 100.0 \\
+        AEROBLADE$^\dagger$~\cite{aeroblade} & 118 & 118 & 78.67 & 0 & 3 & \cellcolor{yellow!20}1.00 & 100.0 & 97.5 \\
+        C2PClip~\cite{c2pclip} & 0 & 998 & 49.90 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & - & 100.0 \\
+        D3~\cite{d3} & 726 & 967 & \cellcolor{green!15}84.65 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        FIRE$^\dagger$~\cite{fire} & 998 & 0 & 49.90 & 1 & 0 & \cellcolor{red!12}\textbf{0.05} & 99.9 & - \\
+        DDA~\cite{dda} & 576 & 975 & 77.55 & 0 & 4 & \cellcolor{red!12}\textbf{0.20} & 100.0 & 99.6 \\
+        FerretNet~\cite{ferretnet} & 40 & 962 & 50.10 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        WaRPAD$^\dagger$~\cite{warpad} & 106 & 106 & 70.67 & 8 & 0 & \cellcolor{yellow!20}2.67 & 92.5 & 100.0 \\
+        APM~\cite{allpatchesmatter} & 34 & 987 & 51.05 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        OmniAID~\cite{omniaid} & 917 & 948 & \cellcolor{green!15}93.25 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        PGC~\cite{pgc} & 304 & 951 & 62.75 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        PROBE~\cite{probe} & 539 & 990 & 76.45 & 0 & 1 & \cellcolor{red!12}\textbf{0.05} & 100.0 & 99.9 \\
+        DEAR~\cite{dear} & 417 & 993 & 70.50 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        DGS-Net~\cite{dgsnet} & 10 & 847 & 42.85 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        SICA~\cite{sica} & 716 & 924 & \cellcolor{green!15}82.00 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        IAPL~\cite{iapl} & 14 & 980 & 49.70 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
+        ForensicCpt~\cite{forensicconcept} & 55 & 982 & 51.85 & 0 & 2 & \cellcolor{red!12}\textbf{0.10} & 100.0 & 99.8 \\
         \bottomrule
         \end{tabular}
         }% End resizebox

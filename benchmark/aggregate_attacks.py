@@ -33,8 +33,17 @@ def stats(rows):
     n = len(rows)
     acc0 = 100.0 * (cf0 + cr0) / n
     acc1 = 100.0 * (cf1 + cr1) / n
-    asf = 100.0 * (cf0 - cf1) / cf0 if cf0 else None
-    asr = 100.0 * (cr0 - cr1) / cr0 if cr0 else None
+    # Attack success = fraction of initially-CORRECT samples flipped to wrong.
+    # Degenerate when too few were correct before (<10) or when the attack "backfires"
+    # (adv-correct > clean-correct, e.g. FreqNet's frequency-saturation gradient masking):
+    # report None so the table shows "—" instead of a meaningless / negative number.
+    def asr_of(c0, c1):
+        if c0 < 10:
+            return None
+        val = 100.0 * (c0 - c1) / c0
+        return val if val >= 0 else None
+    asf = asr_of(cf0, cf1)
+    asr = asr_of(cr0, cr1)
     return dict(n=n, cf0=cf0, cr0=cr0, acc0=round(acc0, 2), cf1=cf1, cr1=cr1,
                acc1=round(acc1, 2),
                asf=round(asf, 1) if asf is not None else None,
