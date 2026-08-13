@@ -1,6 +1,6 @@
 \begin{table*}[t]
 \centering
-\caption{Results before/after PGD ($\epsilon=\frac{8}{255}$) on 2{,}000 images (1{,}000 fake, 1{,}000 real) that are correctly classified before the attack. We report the number of correct fake/real predictions, overall accuracy, and attack success rates. Cell colors highlight accuracy values for readability: green indicates the best clean (pre-attack) accuracy, yellow indicates a small but non-zero post-attack accuracy, and red indicates zero post-attack accuracy. Rows~7--20 are evaluated on New\_benchmark.}
+\caption{Results before/after PGD ($\epsilon=\frac{8}{255}$) on 2{,}000 images (1{,}000 fake, 1{,}000 real) that are correctly classified before the attack. We report the number of correct fake/real predictions, overall accuracy, and attack success rates. Cell colors highlight accuracy values for readability: green indicates the best clean (pre-attack) accuracy, yellow indicates a small but non-zero post-attack accuracy, and red indicates zero post-attack accuracy. Rows~7--20 are evaluated on New\_benchmark. $^{\dagger}$ marks threshold-degenerate detectors (FIRE, AEROBLADE, WaRPAD), for which a decision threshold must be imposed post-hoc; their clean accuracy should be read with this caveat.}
 \label{tab:attack_results}
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}l ccc ccc cc}
 \toprule
@@ -31,16 +31,16 @@ D3~\cite{d3}
 C2PClip~\cite{c2pclip}
 & 51 & 949 & 50.00 & 0 & 2 & \cellcolor{red!12}\textbf{0.10} & 100.0 & 99.8 \\
 \midrule
-AEROBLADE~\cite{aeroblade}
-& - & - & - & - & - & - & - & - \\
-FIRE~\cite{fire}
+AEROBLADE$^{\dagger}$~\cite{aeroblade}
+& 778 & 778 & 77.80 & 0 & 30 & \cellcolor{yellow!20}1.50 & 100.0 & 96.1 \\
+FIRE$^{\dagger}$~\cite{fire}
 & 998 & 0 & 49.90 & 1 & 0 & \cellcolor{red!12}\textbf{0.05} & 99.9 & - \\
 DDA~\cite{dda}
 & 576 & 975 & 77.55 & 0 & 4 & \cellcolor{red!12}\textbf{0.20} & 100.0 & 99.6 \\
 FerretNet~\cite{ferretnet}
 & 40 & 962 & 50.10 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
-WaRPAD~\cite{warpad}
-& - & - & - & - & - & - & - & - \\
+WaRPAD$^{\dagger}$~\cite{warpad}
+& 689 & 689 & 68.90 & 15 & 0 & \cellcolor{yellow!20}0.75 & 97.8 & 100.0 \\
 AllPatchesMatter~\cite{allpatches}
 & 34 & 987 & 51.05 & 0 & 0 & \cellcolor{red!12}\textbf{0.00} & 100.0 & 100.0 \\
 OmniAID~\cite{omniaid}
