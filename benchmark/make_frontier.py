@@ -25,9 +25,11 @@ B = "/shared/home/sarim.hashmi/usenix/benchmark"
 
 # ---- palette (validated data-viz default, light surface) -------------------
 INK, MUT, GRID = "#0b0b0b", "#52514e", "#e6e6e2"
-ACCENT = "#2a78d6"          # frontier (the one objectively-relevant series)
 CLOUD  = "#b8b8b3"          # individual detectors (context)
 MAJOR  = "#e34948"          # major-release marker (e.g. GPT-family)
+# per-detector colours for the frontier (validated data-viz slots 1-3: all-pairs safe).
+# assigned in first-appearance order; <=3 detectors ever define a single frontier.
+DETPAL = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100"]
 
 plt.rcParams.update({
     "font.size": 7, "axes.linewidth": 0.6, "xtick.major.width": 0.6,
@@ -90,24 +92,21 @@ def draw(order, xs, labels, stages, meta, xlabel, title, fname):
         ax.scatter([x] * len(st["cloud"]), [v for _, v in st["cloud"]],
                    s=7, c=CLOUD, alpha=0.55, edgecolors="none", zorder=2)
 
-    # frontier: step line + points, direct-labelled where the responsible detector changes
-    fx = [x for x, st in zip(xs, stages) if st["best_wc"] is not None]
-    fy = [st["best_wc"] for st in stages if st["best_wc"] is not None]
-    ax.step(fx, fy, where="post", color=ACCENT, lw=1.6, zorder=3)
-    ax.scatter(fx, fy, s=16, c=ACCENT, edgecolors="white", linewidths=0.6, zorder=4)
-    prev = None
-    for i, (x, st) in enumerate(zip(xs, stages)):
-        if st["best_det"] is None:
-            continue
-        if st["best_det"] != prev:                       # label only on change
-            first = prev is None                          # first labelled point
-            ax.annotate(st["best_det"], (x, st["best_wc"]),
-                        textcoords="offset points",
-                        xytext=(3, -10) if first else (0, 6),
-                        ha="left" if first else "center",
-                        va="top" if first else "bottom",
-                        fontsize=6.2, color=ACCENT, fontweight="bold")
-            prev = st["best_det"]
+    # frontier: step coloured by the detector that OWNS each segment; identity via legend
+    # (no on-plot text -> no overlap). horizontal tread = owner's colour, vertical riser = neutral.
+    fpts = [(x, st["best_wc"], st["best_det"]) for x, st in zip(xs, stages)
+            if st["best_wc"] is not None]
+    fx = [p[0] for p in fpts]; fy = [p[1] for p in fpts]; fd = [p[2] for p in fpts]
+    cmap = {}
+    for d in fd:                                          # colour per detector, first-appearance order
+        if d not in cmap:
+            cmap[d] = DETPAL[len(cmap) % len(DETPAL)]
+    for i in range(len(fx) - 1):
+        ax.plot([fx[i], fx[i + 1]], [fy[i], fy[i]], color=cmap[fd[i]], lw=2.2,
+                solid_capstyle="round", zorder=3)
+        ax.plot([fx[i + 1]] * 2, [fy[i], fy[i + 1]], color=MUT, lw=1.0, zorder=3)
+    ax.scatter(fx, fy, s=24, c=[cmap[d] for d in fd], edgecolors="white",
+               linewidths=0.7, zorder=4)
 
     # major releases (e.g. GPT-family): red marker at the axis floor
     for x, g in zip(xs, order):
@@ -126,10 +125,10 @@ def draw(order, xs, labels, stages, meta, xlabel, title, fname):
         if meta[g]["major"]:
             lab.set_fontweight("bold")
 
-    leg = [Line2D([0], [0], color=ACCENT, lw=1.6, marker="o", ms=4,
-                  mec="white", label="best-worst-case detector"),
-           Line2D([0], [0], color=CLOUD, lw=0, marker="o", ms=4,
-                  label="individual detectors")]
+    leg = [Line2D([0], [0], color=cmap[d], lw=2.2, marker="o", ms=4, mec="white",
+                  label=f"{d} (frontier)") for d in cmap]
+    leg.append(Line2D([0], [0], color=CLOUD, lw=0, marker="o", ms=4,
+                      label="other detectors"))
     if any(meta[g]["major"] for g in order):
         leg.append(Line2D([0], [0], color=MAJOR, lw=0, marker="^", ms=5, label="major release"))
     ax.legend(handles=leg, loc="upper right", fontsize=5.6, frameon=False,
