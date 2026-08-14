@@ -12,7 +12,7 @@ Three compact, single-column paper figures:
   frontier_elo.{pdf,png}                C) x=generator Elo, every detector (no detector chronology)
 
 Data:  acc_matrix.csv (detector,generator,acc) + generator_meta.csv (dates/elo, EDITABLE).
-Detector release years come from auroc_matrix.csv (dyear).
+Detector release years: authoritative DYEAR map below.
 """
 import csv
 import matplotlib
@@ -122,7 +122,7 @@ def draw(order, xs, labels, stages, meta, xlabel, title, fname):
             ax.scatter([x], [0.40], marker="^", s=18, c=MAJOR,
                        clip_on=False, zorder=5)
 
-    ax.set_ylabel("worst-case accuracy", fontsize=7)
+    ax.set_ylabel("accuracy", fontsize=7)
     ax.set_xlabel(xlabel, fontsize=7)
     ax.set_title(title, fontsize=8, color=INK, pad=6)
     ax.set_xticks(xs)
@@ -161,7 +161,7 @@ def main():
     tlab = [f"{meta[g]['disp']}\n{meta[g]['date']:%b}'{meta[g]['date']:%y}" for g in order]
     stA = frontier_stages(acc, dets, order, ALL)
     draw(order, xs, tlab, stA, meta, "generator (release order →)",
-         "Best worst-case detection over time", "frontier_time_unrestricted")
+         "Detection accuracy over time", "frontier_time_unrestricted")
 
     # ---- B) time, historically valid detectors ----
     dates = [meta[g]["date"] for g in order]
@@ -169,7 +169,7 @@ def main():
         return {d for d in dets if dyear.get(d, 9999) <= dates[k].year}
     stB = frontier_stages(acc, dets, order, valid)
     draw(order, xs, tlab, stB, meta, "generator (release order →)",
-         "Best worst-case detection (era-valid detectors)", "frontier_time_valid")
+         "Detection accuracy over time (era-valid detectors)", "frontier_time_valid")
 
     # ---- C) Elo, all detectors (ordinal x by Elo) ----
     order_e = sorted(meta, key=lambda g: meta[g]["elo"])
@@ -177,7 +177,7 @@ def main():
     elab = [f"{meta[g]['disp']}\n{int(meta[g]['elo'])}" for g in order_e]
     stC = frontier_stages(acc, dets, order_e, ALL)
     draw(order_e, xs_e, elab, stC, meta, "generator (Elo →)",
-         "Best worst-case detection vs. generator Elo", "frontier_elo")
+         "Detection accuracy vs. generator Elo", "frontier_elo")
 
 
 if __name__ == "__main__":
