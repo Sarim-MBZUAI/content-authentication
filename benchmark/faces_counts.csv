@@ -1,0 +1,11 @@
+generator,human_real,human_fake
+FLUX-LoRA,29,24
+FLUX-dev,25,26
+SD2.1,43,36
+SD3,29,26
+SD3.5,29,33
+Boreal-FLUX,25,25
+HiDream-O1,25,25
+FLUX2-boreal,25,25
+FLUX2-plain,25,25
+GPTimage2-photoreal,25,25

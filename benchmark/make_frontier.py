@@ -15,6 +15,7 @@ Data:  acc_matrix.csv (detector,generator,acc) + generator_meta.csv (dates/elo, 
 Detector release years: authoritative DYEAR map below.
 """
 import csv
+import sys
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -48,10 +49,10 @@ plt.rcParams.update({
 })
 
 
-def load():
+def load(matrix="acc_matrix.csv"):
     acc = {}
     dets, gens = set(), set()
-    for r in csv.DictReader(open(f"{B}/acc_matrix.csv")):
+    for r in csv.DictReader(open(f"{B}/{matrix}")):
         acc[(r["detector"], r["generator"])] = float(r["acc"])
         dets.add(r["detector"]); gens.add(r["generator"])
     meta = {}
@@ -156,7 +157,11 @@ def draw(order, xs, labels, stages, meta, xlabel, title, fname):
 
 
 def main():
-    acc, dets, meta, dyear = load()
+    # optional: python make_frontier.py <matrix.csv> <fname_suffix> <title_suffix>
+    matrix = sys.argv[1] if len(sys.argv) > 1 else "acc_matrix.csv"
+    sfx = sys.argv[2] if len(sys.argv) > 2 else ""
+    tsfx = sys.argv[3] if len(sys.argv) > 3 else ""
+    acc, dets, meta, dyear = load(matrix)
     ALL = lambda k: set(dets)                     # unrestricted
 
     # ---- A) time, unrestricted detectors (ordinal x by release order) ----
@@ -165,7 +170,7 @@ def main():
     tlab = [f"{meta[g]['disp']}\n{meta[g]['date']:%b}'{meta[g]['date']:%y}" for g in order]
     stA = frontier_stages(acc, dets, order, ALL)
     draw(order, xs, tlab, stA, meta, "generator (release order →)",
-         "Detection accuracy over time", "frontier_time_unrestricted")
+         "Detection accuracy over time" + tsfx, "frontier_time_unrestricted" + sfx)
 
     # ---- B) time, historically valid detectors ----
     dates = [meta[g]["date"] for g in order]
@@ -173,7 +178,7 @@ def main():
         return {d for d in dets if dyear.get(d, 9999) <= dates[k].year}
     stB = frontier_stages(acc, dets, order, valid)
     draw(order, xs, tlab, stB, meta, "generator (release order →)",
-         "Detection accuracy over time (era-valid detectors)", "frontier_time_valid")
+         "Detection accuracy over time (era-valid detectors)" + tsfx, "frontier_time_valid" + sfx)
 
     # ---- C) Elo, all detectors (ordinal x by Elo) ----
     order_e = sorted(meta, key=lambda g: meta[g]["elo"])
@@ -181,7 +186,7 @@ def main():
     elab = [f"{meta[g]['disp']}\n{int(meta[g]['elo'])}" for g in order_e]
     stC = frontier_stages(acc, dets, order_e, ALL)
     draw(order_e, xs_e, elab, stC, meta, "generator (Elo →)",
-         "Detection accuracy vs. generator Elo", "frontier_elo")
+         "Detection accuracy vs. generator Elo" + tsfx, "frontier_elo" + sfx)
 
 
 if __name__ == "__main__":
