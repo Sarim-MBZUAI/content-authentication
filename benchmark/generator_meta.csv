@@ -1,0 +1,16 @@
+# Editable generator metadata for the max-min frontier figure.
+# release_date: month a generator (or its adapter) became AVAILABLE. base+adapter -> adapter date.
+# elo: approximate image-arena Elo (REPLACE with real LMArena / Artificial-Analysis numbers).
+# is_major: 1 = flag as a major release on the plot (e.g. GPT-family). display: short axis label.
+# These dates/elos are BEST-EFFORT ASSUMPTIONS — edit them and re-run make_frontier.py.
+generator,release_date,elo,is_major,display
+SD2.1,2022-12-07,950,0,SD2.1
+SD3,2024-06-12,1015,0,SD3
+FLUX-dev,2024-08-01,1048,0,FLUX.1
+FLUX-LoRA,2024-09-15,1050,0,FLUX.1+Boreal
+SD3.5,2024-10-22,1035,0,SD3.5
+Boreal-FLUX,2025-01-15,1058,0,Boreal-dev2
+HiDream-O1,2025-04-07,1088,0,HiDream
+FLUX2-plain,2025-11-25,1128,0,FLUX.2
+FLUX2-boreal,2025-11-27,1130,0,FLUX.2+Boreal
+GPTimage2-photoreal,2026-02-01,1158,1,GPT-image-2

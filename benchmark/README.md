@@ -35,6 +35,21 @@ extend_manifest.py   append new-generator rows to a manifest
 Note: the analysis/SLURM scripts here are a curated snapshot; they resolve paths against the
 absolute live working tree (`B = .../usenix/benchmark`), not against their location in this repo.
 
+### Max–min frontier figures (`make_frontier.py`)
+
+`F(t) = max_d min_{g available by t} Perf(d,g)` — the best worst-case detection accuracy as the
+attacker gains access to progressively stronger generators. `make_frontier.py` emits three compact
+single-column figures into `plots/`:
+
+- `frontier_time_unrestricted` — x = release order, every detector available throughout.
+- `frontier_time_valid` — x = release order, only detectors released by that date (frontier can
+  *rise* here as newer detectors ship: 2024 detectors sat near chance worst-case; D3 (2025) lifted it to ~0.81).
+- `frontier_elo` — x = generator Elo, all detectors.
+
+Only the frontier detector is highlighted at each stage (grey cloud = the other detectors' worst-case).
+Generator dates/Elo live in `generator_meta.csv` — **the Elo values are placeholders; replace them with
+real arena numbers and re-run.**
+
 ## Adapters (inference code)
 
 Each `adapters/<Detector>.py` is a self-contained wrapper following `docs/ADAPTER_CONTRACT.md`:
