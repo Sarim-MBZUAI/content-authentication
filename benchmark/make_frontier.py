@@ -131,7 +131,7 @@ def draw(order, xs, labels, stages, meta, xlabel, title, fname):
     ax.set_title(title, fontsize=8, color=INK, pad=6)
     ax.set_xticks(xs)
     ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=5.4)
-    ax.margins(x=0.04)
+    ax.set_xlim(min(xs) - 0.5, max(xs) + 0.5)   # show every generator, even empty stages
     for lab, g in zip(ax.get_xticklabels(), order):
         lab.set_color(MAJOR if meta[g]["major"] else MUT)
         if meta[g]["major"]:
