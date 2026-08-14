@@ -94,6 +94,10 @@ def draw(order, xs, labels, stages, meta, xlabel, title, fname):
     ax.yaxis.grid(True, color=GRID, lw=0.6)
     for s in ("top", "right"):
         ax.spines[s].set_visible(False)
+    # chance line
+    ax.axhline(0.5, ls=(0, (4, 3)), lw=0.8, color=MUT, zorder=1)
+    ax.text(0.005, 0.5, "chance", transform=ax.get_yaxis_transform(),
+            va="bottom", ha="left", fontsize=5.4, color=MUT)
 
     # cloud: every detector's worst-case at each stage (context)
     for x, st in zip(xs, stages):
