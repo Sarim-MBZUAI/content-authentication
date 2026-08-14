@@ -31,6 +31,15 @@ MAJOR  = "#e34948"          # major-release marker (e.g. GPT-family)
 # assigned in first-appearance order; <=3 detectors ever define a single frontier.
 DETPAL = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100"]
 
+# Authoritative detector release years (matches aggregate_attacks.py; used for era-gating).
+DYEAR = {"UFD": 2023, "FreqNet": 2024, "NPR": 2024, "FatFormer": 2024, "AEROBLADE": 2024,
+         "C2P-CLIP": 2025, "D3": 2025, "FIRE": 2025, "DDA": 2025, "FerretNet": 2025,
+         "WaRPAD": 2025, "AllPatchesMatter": 2026, "OmniAID": 2026, "PGC": 2026, "PROBE": 2026,
+         "DEAR": 2026, "DGS-Net": 2026, "SICA": 2026, "IAPL": 2026, "ForensicConcept": 2026}
+# Threshold-degenerate detectors (constant ~0.5): shown in the cloud as context but NEVER
+# allowed to define the frontier -- "best worst-case accuracy" must be a real classifier.
+DEGEN = {"FIRE", "WaRPAD", "AEROBLADE"}
+
 plt.rcParams.update({
     "font.size": 7, "axes.linewidth": 0.6, "xtick.major.width": 0.6,
     "ytick.major.width": 0.6, "axes.edgecolor": MUT, "text.color": INK,
@@ -45,15 +54,12 @@ def load():
     for r in csv.DictReader(open(f"{B}/acc_matrix.csv")):
         acc[(r["detector"], r["generator"])] = float(r["acc"])
         dets.add(r["detector"]); gens.add(r["generator"])
-    dyear = {}
-    for r in csv.DictReader(open(f"{B}/auroc_matrix.csv")):
-        dyear[r["detector"]] = int(r["dyear"])
     meta = {}
     for r in csv.DictReader(l for l in open(f"{B}/generator_meta.csv") if not l.startswith("#")):
         meta[r["generator"]] = dict(date=datetime.strptime(r["release_date"], "%Y-%m-%d"),
                                     elo=float(r["elo"]), major=r["is_major"] == "1",
                                     disp=r["display"])
-    return acc, sorted(dets), meta, dyear
+    return acc, sorted(dets), meta, DYEAR
 
 
 def worstcase(acc, det, avail):
@@ -71,10 +77,12 @@ def frontier_stages(acc, dets, order, det_ok):
         usable = det_ok(k)
         cloud = [(d, worstcase(acc, d, avail)) for d in dets if d in usable]
         cloud = [(d, v) for d, v in cloud if v is not None]
-        if not cloud:                                    # no detector existed yet
-            out.append(dict(cloud=[], best_det=None, best_wc=None))
+        # frontier max ignores threshold-degenerate detectors (they still show in the cloud)
+        front = [(d, v) for d, v in cloud if d not in DEGEN]
+        if not front:                                    # no real detector existed yet
+            out.append(dict(cloud=cloud, best_det=None, best_wc=None))
             continue
-        best_det, best_wc = max(cloud, key=lambda t: t[1])
+        best_det, best_wc = max(front, key=lambda t: t[1])
         out.append(dict(cloud=cloud, best_det=best_det, best_wc=best_wc))
     return out
 
