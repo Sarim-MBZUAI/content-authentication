@@ -123,7 +123,6 @@ def draw(order, xs, labels, stages, meta, xlabel, title, fname):
                        clip_on=False, zorder=5)
 
     ax.set_ylabel("accuracy", fontsize=7)
-    ax.set_xlabel(xlabel, fontsize=7)
     ax.set_title(title, fontsize=8, color=INK, pad=6)
     ax.set_xticks(xs)
     ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=5.4)
@@ -139,8 +138,9 @@ def draw(order, xs, labels, stages, meta, xlabel, title, fname):
                       label="other detectors"))
     if any(meta[g]["major"] for g in order):
         leg.append(Line2D([0], [0], color=MAJOR, lw=0, marker="^", ms=5, label="major release"))
-    ax.legend(handles=leg, loc="upper right", fontsize=5.6, frameon=False,
-              handletextpad=0.4, labelspacing=0.3)
+    ax.legend(handles=leg, loc="upper center", bbox_to_anchor=(0.5, -0.50),
+              ncol=3, fontsize=5.6, frameon=False, handletextpad=0.4,
+              columnspacing=1.0, borderaxespad=0.0)
 
     fig.tight_layout(pad=0.4)
     for ext in ("pdf", "png"):
