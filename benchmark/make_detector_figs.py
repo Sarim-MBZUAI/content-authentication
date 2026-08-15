@@ -93,23 +93,20 @@ def distribution(det, rows, xf, thr, xlabel):
 
 def pgd(det, rows, xf, thr, xlabel):
     corr = [r for r in rows if r[2] == r[0] and r[3] is not None]  # correct before, has adv
-    fake = [r for r in corr if r[0] == 1]; real = [r for r in corr if r[0] == 0]
-    fig, ax = plt.subplots(figsize=(12.0, 5.2))
-    series = [
-        (np.array([xf(r[1]) for r in real]), C_REAL_O, "Real (Original)"),
-        (np.array([xf(r[3]) for r in real]), C_REAL_P, "Real (PGD)"),
-        (np.array([xf(r[1]) for r in fake]), C_FAKE_O, "Fake (Original)"),
-        (np.array([xf(r[3]) for r in fake]), C_FAKE_P, "Fake (PGD)"),
-    ]
-    for d, c, lb in series:
-        ax.hist(d, bins=BINS, color=c, alpha=0.7, edgecolor="white", linewidth=0.3, label=lb)
-    ax.axvline(thr, color="black", ls="--", lw=2.5, label=f"Threshold ({thr:.2f})")
-    ax.set_title(f"{det}: Prediction Scores Before vs. After PGD", fontweight="bold", fontsize=17)
-    ax.set_xlabel(xlabel, fontsize=15); ax.set_ylabel("Count", fontsize=15); ax.set_xlim(0, 1)
-    handles, labels = ax.get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", ncol=5, fontsize=13.5,
-               frameon=True, bbox_to_anchor=(0.5, -0.01))
-    fig.tight_layout(rect=[0, 0.09, 1, 1])
+    fig, axes = plt.subplots(1, 2, figsize=(12.0, 4.46))   # match D3_pgd canvas
+    for ax, which, title in [(axes[0], 1, "Before PGD Attack"), (axes[1], 3, "After PGD Attack")]:
+        tp = np.array([xf(r[which]) for r in corr if r[0] == 1])
+        tn = np.array([xf(r[which]) for r in corr if r[0] == 0])
+        ax.hist(tp, bins=BINS, color=P_TP, alpha=0.8, edgecolor="white", linewidth=0.3,
+                label="True Positives (Fake detected as Fake)")
+        ax.hist(tn, bins=BINS, color=P_TN, alpha=0.8, edgecolor="white", linewidth=0.3,
+                label="True Negatives (Real detected as Real)")
+        ax.axvline(thr, color="black", ls="--", lw=2, label=f"Threshold ({thr:.2f})")
+        ax.set_title(title, fontweight="bold", fontsize=15)
+        ax.set_xlabel(xlabel, fontsize=12); ax.set_ylabel("Count", fontsize=13)
+        ax.tick_params(labelsize=11); ax.set_xlim(0, 1)
+        ax.legend(fontsize=10)          # inside-panel legend, auto-placed (like D3_pgd)
+    fig.tight_layout()
     for ext in ("pdf", "png"):
         fig.savefig(f"{OUT}/{det}_pgd.{ext}", bbox_inches="tight")
     plt.close(fig)
