@@ -96,25 +96,25 @@ def pgd(det, rows, xf, thr, xlabel):
     fig, axes = plt.subplots(1, 2, figsize=(12.0, 4.9))
     # Before panel = Original scores; After panel = PGD scores. Real=blue, Fake=red;
     # Original=dark, PGD=light -> the shared bottom legend reads all four unambiguously.
-    panels = [(axes[0], 1, "Before PGD Attack", C_REAL_O, C_FAKE_O),
-              (axes[1], 3, "After PGD Attack", C_REAL_P, C_FAKE_P)]
+    panels = [(axes[0], 1, "Before PGD", C_REAL_O, C_FAKE_O),
+              (axes[1], 3, "After PGD", C_REAL_P, C_FAKE_P)]
     for ax, which, title, creal, cfake in panels:
         real = np.array([xf(r[which]) for r in corr if r[0] == 0])
         fake = np.array([xf(r[which]) for r in corr if r[0] == 1])
         ax.hist(real, bins=BINS, color=creal, alpha=0.85, edgecolor="white", linewidth=0.3)
         ax.hist(fake, bins=BINS, color=cfake, alpha=0.85, edgecolor="white", linewidth=0.3)
-        ax.axvline(thr, color="black", ls="--", lw=2)
-        ax.set_title(title, fontweight="bold", fontsize=15)
-        ax.set_xlabel(xlabel, fontsize=12); ax.set_ylabel("Count", fontsize=13)
-        ax.tick_params(labelsize=11); ax.set_xlim(0, 1)
+        ax.axvline(thr, color="black", ls="--", lw=2.5)
+        ax.set_title(title, fontweight="bold", fontsize=20)
+        ax.set_xlabel(xlabel, fontsize=16); ax.set_ylabel("Count", fontsize=16)
+        ax.tick_params(labelsize=14); ax.set_xlim(0, 1)
     from matplotlib.patches import Patch
     from matplotlib.lines import Line2D
     handles = [Patch(facecolor=C_REAL_O, label="Real (Original)"),
                Patch(facecolor=C_FAKE_O, label="Fake (Original)"),
                Patch(facecolor=C_REAL_P, label="Real (PGD)"),
                Patch(facecolor=C_FAKE_P, label="Fake (PGD)"),
-               Line2D([0], [0], color="black", ls="--", lw=2, label=f"Threshold ({thr:.2f})")]
-    fig.legend(handles=handles, loc="lower center", ncol=5, fontsize=13,
+               Line2D([0], [0], color="black", ls="--", lw=2.5, label=f"Threshold ({thr:.2f})")]
+    fig.legend(handles=handles, loc="lower center", ncol=5, fontsize=15,
                frameon=True, bbox_to_anchor=(0.5, -0.01))
     fig.tight_layout(rect=[0, 0.09, 1, 1])
     for ext in ("pdf", "png"):
