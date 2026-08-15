@@ -29,6 +29,9 @@ DETS = ["AEROBLADE", "FIRE", "DDA", "FerretNet", "WaRPAD", "AllPatchesMatter", "
 # colours matched to the example PDFs
 D_TP, D_TN, D_FP, D_FN = "#E74C3C", "#5CB85C", "#BCE3BC", "#EBA83A"
 P_TP, P_TN = "#F08080", "#4169E1"
+# original vs PGD overlay: real=blue family, fake=red family
+C_REAL_O, C_REAL_P = "#2471A3", "#7FB3D5"   # Real Original (dark blue), Real PGD (light blue)
+C_FAKE_O, C_FAKE_P = "#C0392B", "#F1948A"   # Fake Original (dark red),  Fake PGD (light red)
 BINS = np.linspace(0.0, 1.0, 51)
 
 
@@ -90,22 +93,23 @@ def distribution(det, rows, xf, thr, xlabel):
 
 def pgd(det, rows, xf, thr, xlabel):
     corr = [r for r in rows if r[2] == r[0] and r[3] is not None]  # correct before, has adv
-    fig, axes = plt.subplots(1, 2, figsize=(12.0, 4.9))
-    for ax, which, title in [(axes[0], 1, "Before PGD Attack"), (axes[1], 3, "After PGD Attack")]:
-        tp = np.array([xf(r[which]) for r in corr if r[0] == 1])
-        tn = np.array([xf(r[which]) for r in corr if r[0] == 0])
-        ax.hist(tp, bins=BINS, color=P_TP, alpha=0.8, edgecolor="white", linewidth=0.3,
-                label="True Positives (Fake detected as Fake)")
-        ax.hist(tn, bins=BINS, color=P_TN, alpha=0.8, edgecolor="white", linewidth=0.3,
-                label="True Negatives (Real detected as Real)")
-        ax.axvline(thr, color="black", ls="--", lw=2.5, label=f"Threshold ({thr:.2f})")
-        ax.set_title(title, fontweight="bold", fontsize=17)
-        ax.set_xlabel(xlabel, fontsize=15); ax.set_ylabel("Count", fontsize=15); ax.set_xlim(0, 1)
-    # one shared legend below both panels (matches the baseline PGD figures)
-    handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", ncol=3, fontsize=14,
+    fake = [r for r in corr if r[0] == 1]; real = [r for r in corr if r[0] == 0]
+    fig, ax = plt.subplots(figsize=(12.0, 5.2))
+    series = [
+        (np.array([xf(r[1]) for r in real]), C_REAL_O, "Real (Original)"),
+        (np.array([xf(r[3]) for r in real]), C_REAL_P, "Real (PGD)"),
+        (np.array([xf(r[1]) for r in fake]), C_FAKE_O, "Fake (Original)"),
+        (np.array([xf(r[3]) for r in fake]), C_FAKE_P, "Fake (PGD)"),
+    ]
+    for d, c, lb in series:
+        ax.hist(d, bins=BINS, color=c, alpha=0.7, edgecolor="white", linewidth=0.3, label=lb)
+    ax.axvline(thr, color="black", ls="--", lw=2.5, label=f"Threshold ({thr:.2f})")
+    ax.set_title(f"{det}: Prediction Scores Before vs. After PGD", fontweight="bold", fontsize=17)
+    ax.set_xlabel(xlabel, fontsize=15); ax.set_ylabel("Count", fontsize=15); ax.set_xlim(0, 1)
+    handles, labels = ax.get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=5, fontsize=13.5,
                frameon=True, bbox_to_anchor=(0.5, -0.01))
-    fig.tight_layout(rect=[0, 0.10, 1, 1])
+    fig.tight_layout(rect=[0, 0.09, 1, 1])
     for ext in ("pdf", "png"):
         fig.savefig(f"{OUT}/{det}_pgd.{ext}", bbox_inches="tight")
     plt.close(fig)
