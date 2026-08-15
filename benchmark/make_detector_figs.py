@@ -93,20 +93,30 @@ def distribution(det, rows, xf, thr, xlabel):
 
 def pgd(det, rows, xf, thr, xlabel):
     corr = [r for r in rows if r[2] == r[0] and r[3] is not None]  # correct before, has adv
-    fig, axes = plt.subplots(1, 2, figsize=(12.0, 4.46))   # match D3_pgd canvas
-    for ax, which, title in [(axes[0], 1, "Before PGD Attack"), (axes[1], 3, "After PGD Attack")]:
-        tp = np.array([xf(r[which]) for r in corr if r[0] == 1])
-        tn = np.array([xf(r[which]) for r in corr if r[0] == 0])
-        ax.hist(tp, bins=BINS, color=P_TP, alpha=0.8, edgecolor="white", linewidth=0.3,
-                label="True Positives (Fake detected as Fake)")
-        ax.hist(tn, bins=BINS, color=P_TN, alpha=0.8, edgecolor="white", linewidth=0.3,
-                label="True Negatives (Real detected as Real)")
-        ax.axvline(thr, color="black", ls="--", lw=2, label=f"Threshold ({thr:.2f})")
+    fig, axes = plt.subplots(1, 2, figsize=(12.0, 4.9))
+    # Before panel = Original scores; After panel = PGD scores. Real=blue, Fake=red;
+    # Original=dark, PGD=light -> the shared bottom legend reads all four unambiguously.
+    panels = [(axes[0], 1, "Before PGD Attack", C_REAL_O, C_FAKE_O),
+              (axes[1], 3, "After PGD Attack", C_REAL_P, C_FAKE_P)]
+    for ax, which, title, creal, cfake in panels:
+        real = np.array([xf(r[which]) for r in corr if r[0] == 0])
+        fake = np.array([xf(r[which]) for r in corr if r[0] == 1])
+        ax.hist(real, bins=BINS, color=creal, alpha=0.85, edgecolor="white", linewidth=0.3)
+        ax.hist(fake, bins=BINS, color=cfake, alpha=0.85, edgecolor="white", linewidth=0.3)
+        ax.axvline(thr, color="black", ls="--", lw=2)
         ax.set_title(title, fontweight="bold", fontsize=15)
         ax.set_xlabel(xlabel, fontsize=12); ax.set_ylabel("Count", fontsize=13)
         ax.tick_params(labelsize=11); ax.set_xlim(0, 1)
-        ax.legend(fontsize=10)          # inside-panel legend, auto-placed (like D3_pgd)
-    fig.tight_layout()
+    from matplotlib.patches import Patch
+    from matplotlib.lines import Line2D
+    handles = [Patch(facecolor=C_REAL_O, label="Real (Original)"),
+               Patch(facecolor=C_FAKE_O, label="Fake (Original)"),
+               Patch(facecolor=C_REAL_P, label="Real (PGD)"),
+               Patch(facecolor=C_FAKE_P, label="Fake (PGD)"),
+               Line2D([0], [0], color="black", ls="--", lw=2, label=f"Threshold ({thr:.2f})")]
+    fig.legend(handles=handles, loc="lower center", ncol=5, fontsize=13,
+               frameon=True, bbox_to_anchor=(0.5, -0.01))
+    fig.tight_layout(rect=[0, 0.09, 1, 1])
     for ext in ("pdf", "png"):
         fig.savefig(f"{OUT}/{det}_pgd.{ext}", bbox_inches="tight")
     plt.close(fig)
