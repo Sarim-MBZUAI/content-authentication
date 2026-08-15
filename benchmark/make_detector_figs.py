@@ -87,7 +87,7 @@ def distribution(det, rows, xf, thr, xlabel):
 
 def pgd(det, rows, xf, thr, xlabel):
     corr = [r for r in rows if r[2] == r[0] and r[3] is not None]  # correct before, has adv
-    fig, axes = plt.subplots(1, 2, figsize=(13, 4.2))
+    fig, axes = plt.subplots(1, 2, figsize=(13, 4.4))
     for ax, which, title in [(axes[0], 1, "Before PGD Attack"), (axes[1], 3, "After PGD Attack")]:
         tp = np.array([xf(r[which]) for r in corr if r[0] == 1])
         tn = np.array([xf(r[which]) for r in corr if r[0] == 0])
@@ -98,8 +98,11 @@ def pgd(det, rows, xf, thr, xlabel):
         ax.axvline(thr, color="black", ls="--", lw=2, label=f"Threshold ({thr:.2f})")
         ax.set_title(title, fontweight="bold", fontsize=13)
         ax.set_xlabel(xlabel); ax.set_ylabel("Count"); ax.set_xlim(0, 1)
-        ax.legend(fontsize=8, loc="upper center")
-    fig.tight_layout()
+    # one shared legend below both panels (matches the baseline PGD figures)
+    handles, labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=3, fontsize=11,
+               frameon=True, bbox_to_anchor=(0.5, -0.02))
+    fig.tight_layout(rect=[0, 0.08, 1, 1])
     for ext in ("pdf", "png"):
         fig.savefig(f"{OUT}/{det}_pgd.{ext}", bbox_inches="tight")
     plt.close(fig)
