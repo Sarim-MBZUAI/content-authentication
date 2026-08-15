@@ -19,6 +19,9 @@ import matplotlib.pyplot as plt
 B = "/shared/home/sarim.hashmi/usenix/benchmark"
 OUT = f"{B}/plots/detector_figs"
 
+# match the example figures' scale (ufd_distribution 13.89x5.88in, D3_pgd 12x4.46in, large fonts)
+plt.rcParams.update({"font.size": 15, "xtick.labelsize": 14, "ytick.labelsize": 14})
+
 # 14 detectors that are NOT the 6 paper baselines (those already have figures with the OLD numbers).
 DETS = ["AEROBLADE", "FIRE", "DDA", "FerretNet", "WaRPAD", "AllPatchesMatter", "OmniAID",
         "PGC", "PROBE", "DEAR", "DGS-Net", "SICA", "IAPL", "ForensicConcept"]
@@ -65,19 +68,19 @@ def distribution(det, rows, xf, thr, xlabel):
     x = np.array([xf(r[1]) for r in rows])
     tp = x[(lab == 1) & (pc == 1)]; tn = x[(lab == 0) & (pc == 0)]
     fp = x[(lab == 0) & (pc == 1)]; fn = x[(lab == 1) & (pc == 0)]
-    fig, ax = plt.subplots(figsize=(9, 4))
+    fig, ax = plt.subplots(figsize=(13.9, 5.9))
     for d, c, lb in [(tn, D_TN, f"TN ({len(tn)}): Real correctly detected as Real"),
                      (fn, D_FN, f"FN ({len(fn)}): Fake incorrectly detected as Real"),
                      (fp, D_FP, f"FP ({len(fp)}): Real incorrectly detected as Fake"),
                      (tp, D_TP, f"TP ({len(tp)}): Fake correctly detected as Fake")]:
         ax.hist(d, bins=BINS, color=c, alpha=0.75, edgecolor="white", linewidth=0.3, label=lb)
-    ax.axvline(thr, color="black", ls="--", lw=2, label=f"Threshold ({thr:.2f})")
+    ax.axvline(thr, color="black", ls="--", lw=2.5, label=f"Threshold ({thr:.2f})")
     # legend order TP, TN, FP, FN, thr (match example)
     h, l = ax.get_legend_handles_labels()
     order = [next(i for i, s in enumerate(l) if s.startswith(k)) for k in ("TP", "TN", "FP", "FN", "Thr")]
-    ax.legend([h[i] for i in order], [l[i] for i in order], fontsize=9, loc="upper right")
-    ax.set_title(f"{det}: Distribution of All Predictions", fontweight="bold", fontsize=13)
-    ax.set_xlabel(xlabel, fontweight="bold"); ax.set_ylabel("Count", fontweight="bold")
+    ax.legend([h[i] for i in order], [l[i] for i in order], fontsize=13.5, loc="upper right")
+    ax.set_title(f"{det}: Distribution of All Predictions", fontweight="bold", fontsize=18)
+    ax.set_xlabel(xlabel, fontweight="bold", fontsize=16); ax.set_ylabel("Count", fontweight="bold", fontsize=16)
     ax.set_xlim(0, 1)
     fig.tight_layout()
     for ext in ("pdf", "png"):
@@ -87,7 +90,7 @@ def distribution(det, rows, xf, thr, xlabel):
 
 def pgd(det, rows, xf, thr, xlabel):
     corr = [r for r in rows if r[2] == r[0] and r[3] is not None]  # correct before, has adv
-    fig, axes = plt.subplots(1, 2, figsize=(13, 4.4))
+    fig, axes = plt.subplots(1, 2, figsize=(12.0, 4.9))
     for ax, which, title in [(axes[0], 1, "Before PGD Attack"), (axes[1], 3, "After PGD Attack")]:
         tp = np.array([xf(r[which]) for r in corr if r[0] == 1])
         tn = np.array([xf(r[which]) for r in corr if r[0] == 0])
@@ -95,14 +98,14 @@ def pgd(det, rows, xf, thr, xlabel):
                 label="True Positives (Fake detected as Fake)")
         ax.hist(tn, bins=BINS, color=P_TN, alpha=0.8, edgecolor="white", linewidth=0.3,
                 label="True Negatives (Real detected as Real)")
-        ax.axvline(thr, color="black", ls="--", lw=2, label=f"Threshold ({thr:.2f})")
-        ax.set_title(title, fontweight="bold", fontsize=13)
-        ax.set_xlabel(xlabel); ax.set_ylabel("Count"); ax.set_xlim(0, 1)
+        ax.axvline(thr, color="black", ls="--", lw=2.5, label=f"Threshold ({thr:.2f})")
+        ax.set_title(title, fontweight="bold", fontsize=17)
+        ax.set_xlabel(xlabel, fontsize=15); ax.set_ylabel("Count", fontsize=15); ax.set_xlim(0, 1)
     # one shared legend below both panels (matches the baseline PGD figures)
     handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", ncol=3, fontsize=11,
-               frameon=True, bbox_to_anchor=(0.5, -0.02))
-    fig.tight_layout(rect=[0, 0.08, 1, 1])
+    fig.legend(handles, labels, loc="lower center", ncol=3, fontsize=14,
+               frameon=True, bbox_to_anchor=(0.5, -0.01))
+    fig.tight_layout(rect=[0, 0.10, 1, 1])
     for ext in ("pdf", "png"):
         fig.savefig(f"{OUT}/{det}_pgd.{ext}", bbox_inches="tight")
     plt.close(fig)
