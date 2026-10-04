@@ -1,6 +1,7 @@
 # Certification of Real Images through Calibrated Content Authentication
 
 Sarim Hashmi, Abdelrahman Elsayed, Mohammed Talha Alam, Samuele Poppi, Nils Lukas
+
 *Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)*
 
 This repository contains the code, evaluation benchmark, and analysis for the paper. It
@@ -40,20 +41,17 @@ the bound against an adaptive adversary.
 benchmark/     Detector benchmark and adversarial evaluation
   adapters/    One wrapper per detector (uniform inference interface)
   attacks/     White-box PGD harnesses (one per detector) + shared engine
-  manifests/   Image lists for each evaluation set
-  results/     Per detector-by-generator accuracy/AUROC, attack results
-  tables/      Paper tables (LaTeX) and references.bib
-  plots/       Paper figures (frontier curves, per-detector distributions)
-  *.py         run_all.py, analyze.py, aggregate_attacks.py, make_frontier.py, ...
+  docs/        Adapter and PGD-attack contracts
+  plots/       Figure shown above
+  *.py         normalize_images.py, run_all.py, analyze.py, aggregate_attacks.py
 
-generation/    Building the generator set (images from the ten generators)
-inversion/     Calibrated resynthesis: inversion, similarity, and A-index metrics
-rf-inversion/  RF-Inversion pipeline used to resynthesize a query image
-scripts/       Helpers for fetching detector/model weights
+inversion/     Calibrated resynthesis: RF-Inversion through SD 2, SD 3 and SD 3.5
+               (unconditioned and conditioned) and the A-index metric (metric.py)
 ```
 
 The detector checkpoints and generator weights are large or gated and are **not** stored in
-this repository; adapters load them from a local detector zoo (see `benchmark/README.md`).
+this repository; adapters load them from a local detector zoo, `detectors/<year>/<Name>/weights/`
+(see [`benchmark/docs/ADAPTER_CONTRACT.md`](benchmark/docs/ADAPTER_CONTRACT.md)).
 
 ## Installation
 
@@ -62,35 +60,38 @@ python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-GPU is required for detector inference, generation, inversion, and the PGD attacks. On a
-SLURM cluster, launch GPU jobs with the provided `*.sbatch` scripts rather than on the login node.
+GPU is required for detector inference, inversion, and the PGD attacks.
 
 ## Reproducing the benchmark
 
+Run from the repository root. The evaluation manifest `benchmark/manifest.csv` lists one image per
+row with columns `generator,gen_year,label,path`.
+
 ```bash
-cd benchmark
 # 1. normalize images to 512x512 to remove the real/fake resolution confound
-python normalize_images.py
-# 2. run every detector over the evaluation manifest
-python run_all.py --device cuda --manifest manifests/manifest_normalized.csv --scores-dir scores
-# 3. build the accuracy / AUROC tables and the frontier figures
-python analyze.py
-python make_frontier.py
+#    (writes benchmark/manifest_normalized.csv)
+python benchmark/normalize_images.py
+# 2. run every detector over the normalized manifest -> benchmark/scores/<Detector>.csv
+python benchmark/run_all.py --device cuda --manifest benchmark/manifest_normalized.csv --scores-dir benchmark/scores
+# 3. build the accuracy / AUROC tables and figures (benchmark/results.csv, benchmark/plots/)
+python benchmark/analyze.py
 ```
 
 Adversarial robustness (white-box PGD, epsilon = 8/255, 10 steps):
 
 ```bash
+cd benchmark
 # per-detector harness -> attacks_out/<Detector>.csv
-python attacks/attack_<Detector>.py --manifest manifests/manifest_newbench.csv \
+python attacks/attack_<Detector>.py --manifest <manifest.csv> \
     --out attacks_out/<Detector>.csv --device cuda
-# aggregate into the before/after table
+# aggregate into the before/after table (results_attack.json, results_attack.md)
 python aggregate_attacks.py
 ```
 
 Each detector adapter follows a fixed interface (`--manifest --out --device [--limit]`) and
 writes `generator,gen_year,label,path,score` with higher scores meaning more likely fake; see
-`benchmark/ADAPTER_CONTRACT.md` and `benchmark/PGD_ATTACK_CONTRACT.md`.
+[`benchmark/docs/ADAPTER_CONTRACT.md`](benchmark/docs/ADAPTER_CONTRACT.md) and
+[`benchmark/docs/PGD_ATTACK_CONTRACT.md`](benchmark/docs/PGD_ATTACK_CONTRACT.md).
 
 ## Reproducing the certification method
 
@@ -99,20 +100,21 @@ the similarity between the image and its reconstruction into an Authenticity Ind
 
 ```bash
 # resynthesize query images through a generator (example: SD3.5)
-python inversion/sd3.5_all_in.py
-# compute similarity metrics between images and their reconstructions
-python inversion/finally_metric/metric1.py    # (see the metric scripts in that folder)
+python inversion/sd3.5_all_in.py --input_dir <query_images> --output_dir <reconstructions>
+# similarity metrics (PSNR, SSIM, LPIPS, CLIP) and the A-index for each image
+python inversion/metric.py --source_dir <query_images> --recon_dir <reconstructions> --out metrics.jsonl
 ```
 
 Calibrate the decision threshold on generated samples so that at most a chosen fraction are
-certified, then evaluate certification on held-out content. The `inversion/` outputs
-(`*_metrics.jsonl`) hold the per-image similarity scores used for calibration.
+certified, then evaluate certification on held-out content. The `metrics.jsonl` output holds the
+per-image scores used for calibration.
 
 ## Detectors evaluated
 
 UFD, FreqNet, NPR, FatFormer, AEROBLADE, C2P-CLIP, D3, FIRE, DDA, FerretNet, WaRPAD,
-AllPatchesMatter, OmniAID, PGC, PROBE, DEAR, DGS-Net, SICA, IAPL, ForensicConcept. Backbones,
-detection cues, and citations are listed in `benchmark/tables/references.bib`.
+AllPatchesMatter, OmniAID, PGC, PROBE, DEAR, DGS-Net, SICA, IAPL, ForensicConcept. Each has an
+adapter in [`benchmark/adapters/`](benchmark/adapters) and a PGD harness in
+[`benchmark/attacks/`](benchmark/attacks).
 
 ## Generators evaluated
 
