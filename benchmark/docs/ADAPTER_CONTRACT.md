@@ -22,11 +22,8 @@ generator,gen_year,label,path,score
 
 ## Rules
 - Load the OFFICIAL checkpoint from
-  `/shared/home/sarim.hashmi/usenix/detectors/<year>/<Name>/weights/`
+  `detectors/<year>/<Name>/weights/`
   and official code from `.../code/` (add to sys.path; do not copy/modify the repo).
 - Use each repo's own preprocessing (its test transform). No homogenization.
-- Interpreter: `/shared/home/sarim.hashmi/usenix/benchmark/venv/bin/python`.
-  Missing deps: `venv/bin/pip install <pkg>` — NEVER reinstall/up/downgrade torch.
-- NO GPU on the login node (SLURM kills it). Smoke test with
-  `--device cpu --limit 4` only.
+- Smoke test with `--device cpu --limit 4`.
 - Batch where easy; float16 on cuda OK if the repo does it.

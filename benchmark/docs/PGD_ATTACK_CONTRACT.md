@@ -16,7 +16,7 @@ For each detector, write `attacks/attack_<Detector>.py` that runs a white-box PG
 If the pipeline has a non-differentiable step (DCT via cv2, patch-selection by entropy/argsort,
 DWT, JPEG, resize done in PIL): attack the **differentiable core** — perturb the tensor that
 feeds the first differentiable module, and treat any preceding non-diff op as fixed (BPDA
-identity). Document exactly what you approximated in a top-of-file comment and in your report.
+identity). Document exactly what you approximated in a top-of-file comment.
 If a detector genuinely cannot be attacked (no gradient path at all), still produce the CLEAN
 columns and leave adv = clean, and flag it clearly.
 
@@ -35,8 +35,6 @@ path,label,score_clean,pred_clean,score_adv,pred_adv
 - One row per manifest row; on per-image error write empty scores and continue.
 
 ## Rules
-- Interpreter `/shared/home/sarim.hashmi/usenix/benchmark/venv/bin/python`. Never touch torch.
-- NO GPU on the login node (killed) — smoke-test `--device cpu --limit 4` only.
-  Verify: (1) ‖x_adv − x_clean‖∞ ≤ 8/255 (+ tiny fp tol), (2) adv scores move in the
-  flip direction vs clean. The full 2000-image run is a SLURM GPU job launched separately.
-- Manifest: `manifest_newbench.csv` (1000 real + 1000 fake, 512×512-normalized).
+- Smoke-test with `--device cpu --limit 4` and verify: (1) ‖x_adv − x_clean‖∞ ≤ 8/255
+  (+ tiny fp tol), (2) adv scores move in the flip direction vs clean.
+- Manifest: 1000 real + 1000 fake images, 512×512-normalized (output of `normalize_images.py`).

@@ -28,9 +28,9 @@ import csv
 import os
 import sys
 
-os.environ.setdefault("TORCH_HOME", "/shared/home/sarim.hashmi/usenix/benchmark/torch_home")
+os.environ.setdefault("TORCH_HOME", "benchmark/torch_home")
 
-CODE = "/shared/home/sarim.hashmi/usenix/detectors/2025/WaRPAD/code"
+CODE = "detectors/2025/WaRPAD/code"
 sys.path.insert(0, CODE)
 
 import torch

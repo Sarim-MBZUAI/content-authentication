@@ -19,11 +19,11 @@ import csv
 import os
 import sys
 
-# The cluster-wide HF_HOME (/datasets/huggingface) does not contain
+# The cluster-wide HF_HOME (~/.cache/huggingface) does not contain
 # dinov2-with-registers-large; it is cached in the user's own HF cache.
-os.environ["HF_HOME"] = "/shared/home/sarim.hashmi/.cache/huggingface"
+os.environ["HF_HOME"] = "~/.cache/huggingface"
 
-REPO = "/shared/home/sarim.hashmi/usenix/detectors/2026/PROBE"
+REPO = "detectors/2026/PROBE"
 CODE = os.path.join(REPO, "code", "Detector")
 CKPT = os.path.join(REPO, "weights", "DINOv2_best_model_step_34999.pth")
 BACKBONE = "facebook/dinov2-with-registers-large"

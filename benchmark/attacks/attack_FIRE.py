@@ -25,7 +25,7 @@ Approximations / notes (documented per contract):
   * COST: on CPU this is heavy -- each forward is 2 full SD-1.5 VAE encode+decode
     passes at 256x256; a 10-step PGD needs 10 forward + 10 backward of that graph
     per image. It is feasible at --limit 4 (a few minutes/image on CPU-limit-4) but
-    the full 2000-image run must go to the SLURM GPU job.
+    the full 2000-image run should be done on a GPU.
 
 Score = raw logit (higher = fake); pred threshold 0.0 (logit). label: 0=real,1=fake.
 """

@@ -8,7 +8,7 @@ from pathlib import Path
 from PIL import Image
 from concurrent.futures import ThreadPoolExecutor
 
-B = Path("/shared/home/sarim.hashmi/usenix/benchmark")
+B = Path("benchmark")
 SIZE = 512
 
 def normalize(row):

@@ -47,11 +47,11 @@ import pandas as pd
 # --------------------------------------------------------------------------- #
 # Repo wiring
 # --------------------------------------------------------------------------- #
-REPO_ROOT = Path("/shared/home/sarim.hashmi/usenix/detectors/2024/AEROBLADE/code")
+REPO_ROOT = Path("detectors/2024/AEROBLADE/code")
 REPO_SRC = REPO_ROOT / "src"
 
 # HuggingFace cache / token for gated AE downloads (see report notes).
-os.environ.setdefault("HF_HOME", "/shared/home/sarim.hashmi/.cache/huggingface")
+os.environ.setdefault("HF_HOME", "~/.cache/huggingface")
 
 # Default AEs, in the repo's order. SD2-base is included but currently 404 on the
 # Hub (repo removed by Stability); the adapter skips any AE that fails to load and

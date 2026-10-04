@@ -9,13 +9,13 @@ import csv
 import os
 import sys
 
-REPO = "/shared/home/sarim.hashmi/usenix/detectors/2023/UFD"
+REPO = "detectors/2023/UFD"
 CODE = os.path.join(REPO, "code")
 CKPT = os.path.join(REPO, "weights", "fc_weights.pth")
-# Official OpenAI CLIP ViT-L/14 checkpoint already on disk (sha256 verified
-# against the URL hash in code/models/clip/clip.py). Symlinked into the cache
-# dir that the repo's bundled clip.load() checks, so nothing is downloaded.
-CLIP_BACKBONE = "/shared/home/sarim.hashmi/usenix/detectors/2025/Chimera/weights/models/deepfake/ViT-L-14.pt"
+# Official OpenAI CLIP ViT-L/14 checkpoint. If $CLIP_VIT_L14 points to a local copy it is
+# symlinked into the cache dir that the repo's bundled clip.load() checks; otherwise
+# clip.load() downloads it into ~/.cache/clip.
+CLIP_BACKBONE = os.environ.get("CLIP_VIT_L14")
 
 sys.path.insert(0, CODE)
 
@@ -23,9 +23,9 @@ sys.path.insert(0, CODE)
 def ensure_clip_cache():
     cache_dir = os.path.expanduser("~/.cache/clip")
     target = os.path.join(cache_dir, "ViT-L-14.pt")
-    if not os.path.exists(target):
+    if CLIP_BACKBONE and not os.path.lexists(target):
         os.makedirs(cache_dir, exist_ok=True)
-        os.symlink(CLIP_BACKBONE, target)
+        os.symlink(os.path.abspath(CLIP_BACKBONE), target)
 
 
 def main():

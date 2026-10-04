@@ -22,7 +22,7 @@ import glob
 import os
 import sys
 
-REPO = "/shared/home/sarim.hashmi/usenix/detectors/2026/PGC"
+REPO = "detectors/2026/PGC"
 CODE = os.path.join(REPO, "code")
 CKPT = os.path.join(REPO, "weights", "PGC_train_progan_sdv1_4_ckpt.pth")
 
@@ -31,7 +31,7 @@ sys.path.insert(0, CODE)
 
 def find_dinov2_large_snapshot():
     pats = [
-        "/datasets/huggingface/hub/models--facebook--dinov2-large/snapshots/*/",
+        "~/.cache/huggingface/hub/models--facebook--dinov2-large/snapshots/*/",
         os.path.expanduser(
             "~/.cache/huggingface/hub/models--facebook--dinov2-large/snapshots/*/"),
     ]

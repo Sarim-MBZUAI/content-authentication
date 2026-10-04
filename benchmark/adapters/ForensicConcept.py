@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Benchmark adapter for ForensicConcept (2026).
 
-Official code:    /shared/home/sarim.hashmi/usenix/detectors/2026/ForensicConcept/code
+Official code:    detectors/2026/ForensicConcept/code
 Official weights: .../weights/weights/detectors/clip_vitl14_codebook_stage2.pth
 
 NOTE ON BACKBONE CHOICE: the paper's primary DINOv3 variant
@@ -33,7 +33,7 @@ from PIL import Image, ImageFile
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-ROOT = "/shared/home/sarim.hashmi/usenix/detectors/2026/ForensicConcept"
+ROOT = "detectors/2026/ForensicConcept"
 CODE = os.path.join(ROOT, "code")
 CKPT = os.path.join(ROOT, "weights", "weights", "detectors", "clip_vitl14_codebook_stage2.pth")
 CODEBOOK = os.path.join(CODE, "assets", "codebooks", "cleandift_codebook.npy")

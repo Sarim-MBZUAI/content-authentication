@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Benchmark adapter for IAPL (2026).
 
-Official code:    /shared/home/sarim.hashmi/usenix/detectors/2026/IAPL/code (main.py / engine.py)
+Official code:    detectors/2026/IAPL/code (main.py / engine.py)
 Official weights: .../weights/checkpoint_best_acc_progan.pth
 
 The model is a prompt-learned CLIP ViT-L/14 (MaPLe-style adapters + DCT-conditioned
@@ -31,7 +31,7 @@ from PIL import Image, ImageFile
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-ROOT = "/shared/home/sarim.hashmi/usenix/detectors/2026/IAPL"
+ROOT = "detectors/2026/IAPL"
 CODE = os.path.join(ROOT, "code")
 CKPT = os.path.join(ROOT, "weights", "checkpoint_best_acc_progan.pth")
 CLIP_VIT_L14 = os.path.expanduser("~/.cache/clip/ViT-L-14.pt")

@@ -17,11 +17,12 @@ import csv
 import os
 import sys
 
-REPO = "/shared/home/sarim.hashmi/usenix/detectors/2024/FatFormer"
+REPO = "detectors/2024/FatFormer"
 CODE = os.path.join(REPO, "code")
 CKPT = os.path.join(REPO, "weights", "fatformer_4class_ckpt.pth")
-CLIP_BACKBONE = "/shared/home/sarim.hashmi/usenix/detectors/2025/Chimera/weights/models/deepfake/ViT-L-14.pt"
-ASSETS = "/shared/home/sarim.hashmi/usenix/benchmark/assets/fatformer"
+# Official OpenAI CLIP ViT-L/14 checkpoint (e.g. downloaded by `clip.load("ViT-L/14")`).
+CLIP_BACKBONE = os.environ.get("CLIP_VIT_L14", os.path.expanduser("~/.cache/clip/ViT-L-14.pt"))
+ASSETS = "benchmark/assets/fatformer"
 
 sys.path.insert(0, CODE)
 
@@ -49,9 +50,9 @@ def build_fatformer(device_str):
 
     # clip.load() opens 'pretrained/ViT-L-14.pt' relative to cwd.
     link = os.path.join(ASSETS, "pretrained", "ViT-L-14.pt")
-    if not os.path.exists(link):
+    if not os.path.lexists(link):
         os.makedirs(os.path.dirname(link), exist_ok=True)
-        os.symlink(CLIP_BACKBONE, link)
+        os.symlink(os.path.abspath(CLIP_BACKBONE), link)
     cwd = os.getcwd()
     os.chdir(ASSETS)
     try:

@@ -18,8 +18,8 @@ import os
 import random
 import sys
 
-CODE = "/shared/home/sarim.hashmi/usenix/detectors/2025/D3/code"
-CKPT = "/shared/home/sarim.hashmi/usenix/detectors/2025/D3/weights/classifier.pth"
+CODE = "detectors/2025/D3/code"
+CKPT = "detectors/2025/D3/weights/classifier.pth"
 sys.path.insert(0, CODE)
 
 import types

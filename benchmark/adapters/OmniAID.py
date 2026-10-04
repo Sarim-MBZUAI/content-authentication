@@ -24,7 +24,7 @@ import os
 import sys
 from types import SimpleNamespace
 
-REPO = "/shared/home/sarim.hashmi/usenix/detectors/2026/OmniAID"
+REPO = "detectors/2026/OmniAID"
 CODE = os.path.join(REPO, "code")
 CKPT = os.path.join(REPO, "weights", "checkpoint_omniaid_dino_v2.pth")
 MOE_CONFIG = os.path.join(REPO, "weights", "config", "config_omniaid_dino_v2.json")

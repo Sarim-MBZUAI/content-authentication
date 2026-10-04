@@ -16,20 +16,22 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 
-B = "/shared/home/sarim.hashmi/usenix/benchmark"
+B = "benchmark"
 
 DETECTOR_YEAR = {
     "UFD": 2023,
-    "FreqNet": 2024, "NPR": 2024, "FatFormer": 2024,
+    "AEROBLADE": 2024, "FreqNet": 2024, "NPR": 2024, "FatFormer": 2024,
     "C2P-CLIP": 2025, "D3": 2025, "FIRE": 2025, "DDA": 2025,
     "FerretNet": 2025, "WaRPAD": 2025,
     "AllPatchesMatter": 2026, "OmniAID": 2026, "PGC": 2026, "PROBE": 2026,
     "DEAR": 2026, "DGS-Net": 2026, "SICA": 2026, "IAPL": 2026,
     "ForensicConcept": 2026,
 }
-GEN_ORDER = ["SD2.1", "SD3", "SD3.5", "FLUX-dev", "FLUX-LoRA", "FLUX.2", "Ideogram4"]
-GEN_YEAR = {"SD2.1": 2022, "SD3": 2024, "SD3.5": 2024, "FLUX-dev": 2024,
-            "FLUX-LoRA": 2024, "FLUX.2": 2025, "Ideogram4": 2026}
+GEN_ORDER = ["SD2.1", "SD3", "SD3.5", "FLUX-dev", "FLUX-LoRA", "Boreal-FLUX",
+             "FLUX2-plain", "FLUX2-boreal", "HiDream-O1", "GPTimage2-photoreal"]
+GEN_YEAR = {"SD2.1": 2022, "SD3": 2024, "SD3.5": 2024, "FLUX-dev": 2024, "FLUX-LoRA": 2024,
+            "Boreal-FLUX": 2024, "FLUX2-plain": 2025, "FLUX2-boreal": 2025,
+            "HiDream-O1": 2026, "GPTimage2-photoreal": 2026}
 # arms race: at each year Y, defender = best detector released <= Y,
 # attacker = best (hardest) generator released <= Y  ->  min_g max_d metric
 

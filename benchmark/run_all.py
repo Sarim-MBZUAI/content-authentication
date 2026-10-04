@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Run every adapter in adapters/ over the manifest -> scores/<detector>.csv."""
+"""Run every adapter in benchmark/adapters/ over a manifest -> <scores-dir>/<detector>.csv.
+Run from the repository root."""
 import argparse, os, subprocess, sys, time
 
-B = "/shared/home/sarim.hashmi/usenix/benchmark"
+B = "benchmark"
 ap = argparse.ArgumentParser()
+ap.add_argument("--manifest", default=f"{B}/manifest_normalized.csv",
+                help="CSV with columns generator,gen_year,label,path (output of normalize_images.py)")
+ap.add_argument("--scores-dir", default=f"{B}/scores")
 ap.add_argument("--device", default="cuda")
 ap.add_argument("--only", default=None, help="comma-list of adapter names")
 ap.add_argument("--limit", default=None)
@@ -13,12 +17,13 @@ adapters = sorted(f[:-3] for f in os.listdir(f"{B}/adapters") if f.endswith(".py
 if args.only:
     adapters = [a for a in adapters if a in args.only.split(",")]
 print(f"{len(adapters)} adapters: {adapters}", flush=True)
+os.makedirs(args.scores_dir, exist_ok=True)
 
 failed = []
 for a in adapters:
-    out = f"{B}/scores/{a}.csv"
-    cmd = [f"{B}/venv/bin/python", f"{B}/adapters/{a}.py",
-           "--manifest", f"{B}/manifest.csv", "--out", out, "--device", args.device]
+    out = os.path.join(args.scores_dir, f"{a}.csv")
+    cmd = [sys.executable, f"{B}/adapters/{a}.py",
+           "--manifest", args.manifest, "--out", out, "--device", args.device]
     if args.limit:
         cmd += ["--limit", args.limit]
     t0 = time.time()

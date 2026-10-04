@@ -33,7 +33,7 @@ import importlib
 import os
 import sys
 
-BENCH = "/shared/home/sarim.hashmi/usenix/benchmark"
+BENCH = "benchmark"
 sys.path.insert(0, os.path.join(BENCH, "adapters"))
 
 EPS = 8.0 / 255.0

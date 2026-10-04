@@ -11,7 +11,7 @@ import csv
 import os
 import sys
 
-REPO = "/shared/home/sarim.hashmi/usenix/detectors/2024/NPR"
+REPO = "detectors/2024/NPR"
 CODE = os.path.join(REPO, "code")
 CKPT = os.path.join(REPO, "weights", "NPR.pth")
 

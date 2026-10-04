@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Benchmark adapter for DGS-Net (2026).
 
-Official code:    /shared/home/sarim.hashmi/usenix/detectors/2026/DGS-Net/code
+Official code:    detectors/2026/DGS-Net/code
 Official weights: .../weights/DGS-Net/checkpoints/model_epoch_step2.pth (final, step2)
                   (step1 checkpoint is loaded internally by CLIPModel.__init__ via
                    the relative path ./checkpoints/model_epoch_step1.pth, so we chdir
@@ -25,7 +25,7 @@ from PIL import Image, ImageFile
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-ROOT = "/shared/home/sarim.hashmi/usenix/detectors/2026/DGS-Net"
+ROOT = os.path.abspath("detectors/2026/DGS-Net")
 CODE = os.path.join(ROOT, "code")
 WEIGHTS_DIR = os.path.join(ROOT, "weights", "DGS-Net")
 CKPT = os.path.join(WEIGHTS_DIR, "checkpoints", "model_epoch_step2.pth")
@@ -49,6 +49,7 @@ def torch_load(path):
 
 def build_model(device):
     # CLIPModel.__init__ loads "./checkpoints/model_epoch_step1.pth" (relative).
+    cwd = os.getcwd()
     os.chdir(WEIGHTS_DIR)
     from models.clip_models import CLIPModel
     from options.test_options import TestOptions
@@ -74,6 +75,7 @@ def build_model(device):
         state = torch_load(CKPT)
     finally:
         torch.load = _orig_load
+    os.chdir(cwd)  # manifest paths are relative to the repository root
     model.load_state_dict(state, strict=True)
     model.to(device)
     model.eval()

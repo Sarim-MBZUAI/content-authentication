@@ -30,8 +30,8 @@ import csv
 import os
 import sys
 
-CODE = "/shared/home/sarim.hashmi/usenix/detectors/2025/FIRE/code"
-CKPT = "/shared/home/sarim.hashmi/usenix/detectors/2025/FIRE/weights/imagenet_w_adm.pt"
+CODE = "detectors/2025/FIRE/code"
+CKPT = "detectors/2025/FIRE/weights/imagenet_w_adm.pt"
 sys.path.insert(0, CODE)
 
 import torch

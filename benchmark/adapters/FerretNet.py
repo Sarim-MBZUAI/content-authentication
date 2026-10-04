@@ -15,7 +15,7 @@ import csv
 import os
 import sys
 
-CODE = "/shared/home/sarim.hashmi/usenix/detectors/2025/FerretNet/code"
+CODE = "detectors/2025/FerretNet/code"
 CFG_PATH = os.path.join(CODE, "configs/Test.yaml")
 CKPT = os.path.join(CODE, "checkpoints/4cls_ckpt/ferretnet-b-median-3.pth")
 sys.path.insert(0, CODE)

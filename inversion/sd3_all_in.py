@@ -203,7 +203,7 @@ def interpolated_inversion(pipeline, latents, gamma, DTYPE, prompt="", num_steps
 @torch.inference_mode()
 def main():
     parser = argparse.ArgumentParser(description='Process multiple images with interpolated_denoise for SD3.')
-    parser.add_argument('--model_path', type=str, default='/shared/shashmi/stable-diffusion-3-medium-diffusers', help='Path to the pretrained model')
+    parser.add_argument('--model_path', type=str, default='stabilityai/stable-diffusion-3-medium-diffusers', help='Path to the pretrained model')
     parser.add_argument('--input_dir', type=str, required=True, help='Directory containing input images')
     parser.add_argument('--output_dir', type=str, default='output', help='Directory to save output images')
     parser.add_argument('--eta_base', type=float, default=0.95, help='Eta parameter for interpolated_denoise')
@@ -233,7 +233,6 @@ def main():
     # Initialize the pipeline with the SD3 model
     pipe = StableDiffusion3Pipeline.from_pretrained(
         args.model_path,
-        local_files_only=True,
         torch_dtype=DTYPE
     ).to("cuda")
     

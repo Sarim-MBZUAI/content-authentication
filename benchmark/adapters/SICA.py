@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Benchmark adapter for SICA (2026).
 
-Official code:    /shared/home/sarim.hashmi/usenix/detectors/2026/SICA/code (inference.py)
+Official code:    detectors/2026/SICA/code (inference.py)
 Official weights: .../weights/SICA_for_MCC_weights/sica_weight_full.pth
 
 Model: CLIP_LORA_PURE (ViT-L/14 backbone + LoRA parametrization + linear head).
@@ -19,7 +19,7 @@ from PIL import Image, ImageFile
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-ROOT = "/shared/home/sarim.hashmi/usenix/detectors/2026/SICA"
+ROOT = "detectors/2026/SICA"
 CODE = os.path.join(ROOT, "code")
 CKPT = os.path.join(ROOT, "weights", "SICA_for_MCC_weights", "sica_weight_full.pth")
 

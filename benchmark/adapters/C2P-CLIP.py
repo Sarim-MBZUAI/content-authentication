@@ -13,8 +13,8 @@ import csv
 import os
 import sys
 
-CODE = "/shared/home/sarim.hashmi/usenix/detectors/2025/C2P-CLIP/code"
-CKPT = "/shared/home/sarim.hashmi/usenix/detectors/2025/C2P-CLIP/weights/C2P_CLIP_release_20240901.pth"
+CODE = "detectors/2025/C2P-CLIP/code"
+CKPT = "detectors/2025/C2P-CLIP/weights/C2P_CLIP_release_20240901.pth"
 sys.path.insert(0, os.path.join(CODE, "scripts"))
 sys.path.insert(0, CODE)
 

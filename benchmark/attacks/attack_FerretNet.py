@@ -32,7 +32,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True
 # Reuse the detector's official model/weights via its adapter's build path.
 ADAPT = str(Path(__file__).resolve().parent.parent / "adapters")
 sys.path.insert(0, ADAPT)
-CODE = "/shared/home/sarim.hashmi/usenix/detectors/2025/FerretNet/code"
+CODE = "detectors/2025/FerretNet/code"
 CFG_PATH = os.path.join(CODE, "configs/Test.yaml")
 CKPT = os.path.join(CODE, "checkpoints/4cls_ckpt/ferretnet-b-median-3.pth")
 sys.path.insert(0, CODE)

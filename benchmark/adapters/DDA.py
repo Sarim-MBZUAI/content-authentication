@@ -15,10 +15,10 @@ import csv
 import os
 import sys
 
-os.environ.setdefault("TORCH_HOME", "/shared/home/sarim.hashmi/usenix/benchmark/torch_home")
+os.environ.setdefault("TORCH_HOME", "benchmark/torch_home")
 
-CODE = "/shared/home/sarim.hashmi/usenix/detectors/2025/DualDataAlignment/code/Inference"
-CKPT = "/shared/home/sarim.hashmi/usenix/detectors/2025/DualDataAlignment/weights/DDA_ckpt.pth"
+CODE = "detectors/2025/DualDataAlignment/code/Inference"
+CKPT = "detectors/2025/DualDataAlignment/weights/DDA_ckpt.pth"
 sys.path.insert(0, CODE)
 
 import torch
