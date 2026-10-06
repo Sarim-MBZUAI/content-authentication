@@ -1,9 +1,9 @@
 # Certification of Real Images through Calibrated Content Authentication
 
-**Sarim Hashmi, Abdelrahman Elsayed, Mohammed Talha Alam, Samuele Poppi, Nils Lukas**  
+**[Sarim Hashmi](https://sarim-mbzuai.github.io/), [Abdelrahman Elsayed](https://scholar.google.com/citations?user=GCS11JkAAAAJ&hl=en), [Mohammed Talha Alam](https://www.linkedin.com/in/mohammed-talha-alam/), [Samuele Poppi](https://seppia978.github.io/), [Nils Lukas](https://nilslukas.github.io)**  
 *Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)*
 
-[Paper](https://arxiv.org/abs/2610.05870) · [PDF](https://arxiv.org/pdf/2610.05870) · [Installation](#installation) · [Reproduction](#reproducing-the-benchmark) · [Citation](#references-and-citation)
+[Project Page](https://sarim-mbzuai.github.io/content-authentication/) · [Paper](https://arxiv.org/abs/2610.05870) · [PDF](https://arxiv.org/pdf/2610.05870) · [Installation](#installation) · [Reproduction](#reproducing-the-benchmark) · [Citation](#references-and-citation)
 
 Code, benchmarks, and analysis for **calibrated content authentication**: a method that certifies an image as authentic relative to a tested set of generators, with a calibrated false-certification rate, and abstains when a generator can faithfully reconstruct it.
 
