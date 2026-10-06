@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e2924">
+  <meta name="description" content="Certification of Real Images through Calibrated Content Authentication — a generator-relative framework for selective image authenticity certification.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Certification of Real Images through Calibrated Content Authentication">
+  <meta property="og:description" content="A calibrated, generator-relative alternative to brittle real-vs-fake detection.">
+  <meta property="og:url" content="https://sarim-mbzuai.github.io/content-authentication/">
+  <meta property="og:image" content="https://sarim-mbzuai.github.io/content-authentication/assets/fig_concept.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <title>Calibrated Content Authentication</title>
+  <link rel="canonical" href="https://sarim-mbzuai.github.io/content-authentication/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=DM+Serif+Display:ital@0;1&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('has-js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
+
+  <header class="site-header" id="top">
+    <div class="nav-shell">
+      <a class="brand" href="#top" aria-label="Calibrated Content Authentication, home">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span class="brand-copy">Content<br>Authentication</span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteNav">
+        <span class="sr-only">Toggle navigation</span>
+        <span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#scope">Scope</a>
+        <a href="#citation">Citation</a>
+        <a class="nav-paper" href="https://arxiv.org/pdf/2610.05870" target="_blank" rel="noreferrer">
+          Read paper
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5 11 5m-5.5 0H11v5.5M11 9v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h3"/></svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="paper-title">
+      <div class="hero-grid shell">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span></span> Research paper · 2026</p>
+          <h1 id="paper-title">Certification of Real Images <em>through Calibrated Content Authentication</em></h1>
+          <p class="hero-deck">A generator-relative framework that knows when to certify—and when the honest answer is to abstain.</p>
+
+          <div class="authors" aria-label="Authors">
+            <span><a href="https://sarim-mbzuai.github.io/" target="_blank" rel="noreferrer">Sarim Hashmi</a></span>
+            <span><a href="https://scholar.google.com/citations?user=GCS11JkAAAAJ&amp;hl=en" target="_blank" rel="noreferrer">Abdelrahman Elsayed</a></span>
+            <span><a href="https://www.linkedin.com/in/mohammed-talha-alam/" target="_blank" rel="noreferrer">Mohammed Talha Alam</a></span>
+            <span><a href="https://seppia978.github.io/" target="_blank" rel="noreferrer">Samuele Poppi</a></span>
+            <span><a href="https://nilslukas.github.io" target="_blank" rel="noreferrer">Nils Lukas</a></span>
+          </div>
+          <p class="affiliation">Mohamed bin Zayed University of Artificial Intelligence</p>
+
+          <div class="hero-actions" aria-label="Paper resources">
+            <a class="button button-primary" href="https://arxiv.org/abs/2610.05870" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 13h7M9 17h5"/></svg>
+              Paper
+            </a>
+            <a class="button button-secondary" href="https://arxiv.org/pdf/2610.05870" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+              PDF
+            </a>
+            <a class="button button-secondary" href="https://github.com/Sarim-MBZUAI/content-authentication" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.57 9.57 0 0 1 12 6.82a9.5 9.5 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+              Code
+            </a>
+          </div>
+        </div>
+
+        <aside class="question-card reveal" aria-label="Core research question">
+          <div class="question-card-top">
+            <span class="signal-dot" aria-hidden="true"></span>
+            <span>THE DECISION SHIFT</span>
+            <span>01—04</span>
+          </div>
+          <p class="old-question"><span>Instead of</span> “Does this image look real?”</p>
+          <p class="new-question"><span>Ask</span> “Can a tested generator faithfully reconstruct it?”</p>
+
+          <div class="mini-flow" aria-hidden="true">
+            <div><b>01</b><span>Invert</span></div>
+            <i></i>
+            <div><b>02</b><span>Resynthesize</span></div>
+            <i></i>
+            <div><b>03</b><span>Compare</span></div>
+          </div>
+
+          <div class="decision-split">
+            <div class="decision-low">
+              <span>LOW A-INDEX</span>
+              <strong>Abstain</strong>
+              <small>faithful reconstruction</small>
+            </div>
+            <div class="decision-high">
+              <span>HIGH A-INDEX</span>
+              <strong>Certify</strong>
+              <small>if every generator clears</small>
+            </div>
+          </div>
+          <p class="question-note">A certificate is relative to the generators and calibration setting that were actually tested.</p>
+        </aside>
+      </div>
+      <div class="hero-ticker" aria-hidden="true">
+        <div>
+          <span>CALIBRATE RISK</span><i></i><span>TEST GENERATORS</span><i></i><span>RETURN EVIDENCE</span><i></i><span>ABSTAIN WHEN UNCERTAIN</span><i></i>
+          <span>CALIBRATE RISK</span><i></i><span>TEST GENERATORS</span><i></i><span>RETURN EVIDENCE</span><i></i><span>ABSTAIN WHEN UNCERTAIN</span><i></i>
+        </div>
+      </div>
+    </section>
+
+    <section class="section overview" id="overview">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <p class="section-index">01 · OVERVIEW</p>
+          <h2>From a brittle verdict to <em>calibrated evidence.</em></h2>
+          <p>When authentic and generated images can be identical—including through memorization—content alone cannot always establish provenance. Our method narrows the claim to something testable.</p>
+        </div>
+
+        <div class="claim-grid">
+          <article class="claim-card claim-old reveal">
+            <div class="claim-icon" aria-hidden="true">×</div>
+            <p class="claim-label">Traditional detection</p>
+            <h3>Force every image into “real” or “fake.”</h3>
+            <p>Artifact-based classifiers can lose reliability as generators evolve or inputs are adversarially perturbed.</p>
+          </article>
+          <article class="claim-card claim-new reveal">
+            <div class="claim-icon" aria-hidden="true">✓</div>
+            <p class="claim-label">Calibrated resynthesis</p>
+            <h3>Certify only when the evidence clears a calibrated bar.</h3>
+            <p>If a tested generator can reconstruct the query faithfully, abstain and return that reconstruction as evidence.</p>
+          </article>
+        </div>
+
+        <figure class="paper-figure paper-figure-wide reveal">
+          <a href="assets/fig_concept.png" target="_blank" rel="noreferrer" aria-label="Open the concept figure at full resolution">
+            <img src="assets/fig_concept.png" alt="Comparison between traditional post-hoc detection and calibrated resynthesis with the Authenticity Index." width="2056" height="615" fetchpriority="high">
+          </a>
+          <figcaption><span>Figure 1</span> Traditional post-hoc detection versus the proposed generator-relative resynthesis test.</figcaption>
+        </figure>
+
+        <div class="abstract-grid reveal">
+          <p class="section-index">ABSTRACT</p>
+          <div class="abstract-copy">
+            <p>We introduce <strong>calibrated content authentication</strong>, a selective framework for certifying an image as authentic relative to a tested set of generators. For each generator, the method reconstructs the query by inversion, measures reconstruction fidelity across complementary views, and converts those measurements into an Authenticity Index.</p>
+            <p>Generator-specific thresholds are calibrated on held-out synthetic samples to control false certification. A query is certified only when it clears every tested threshold; otherwise, the method abstains and exposes the reconstruction that made synthetic provenance plausible. The evaluation spans 20 detectors, 10 generators, bounded white-box attacks, and preliminary image-to-video transfer.</p>
+          </div>
+        </div>
+
+        <div class="stat-grid" aria-label="Key findings">
+          <article class="stat-card reveal"><strong>20</strong><span>deepfake detectors evaluated</span></article>
+          <article class="stat-card reveal"><strong>10</strong><span>generator configurations over time</span></article>
+          <article class="stat-card stat-accent reveal"><strong>&lt;2%</strong><span>accuracy for every detector after PGD</span></article>
+          <article class="stat-card reveal"><strong>1%</strong><span>target false-certification rate</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section method" id="method">
+      <div class="shell">
+        <div class="section-heading method-heading reveal">
+          <p class="section-index">02 · METHOD</p>
+          <h2>Reconstruct. Compare. <em>Calibrate.</em></h2>
+          <p>The pipeline asks a concrete question for every tested generator, then combines four views of reconstruction fidelity into one interpretable score.</p>
+        </div>
+
+        <ol class="method-steps">
+          <li class="reveal">
+            <span class="step-number">01</span>
+            <div><h3>Resynthesize</h3><p>Invert the query through a known generator and reconstruct it with the same model.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="step-number">02</span>
+            <div><h3>Measure</h3><p>Compare pixels, structure, perception, and semantics with PSNR, SSIM, LPIPS, and CLIP.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="step-number">03</span>
+            <div><h3>Calibrate</h3><p>Fit a generator-specific threshold to a target false-certification rate on held-out samples.</p></div>
+          </li>
+          <li class="reveal">
+            <span class="step-number">04</span>
+            <div><h3>Decide</h3><p>Certify only if every tested generator is unable to reconstruct the query faithfully.</p></div>
+          </li>
+        </ol>
+
+        <figure class="paper-figure method-figure reveal">
+          <a href="assets/fig_method.png" target="_blank" rel="noreferrer" aria-label="Open the complete method figure at full resolution">
+            <img src="assets/fig_method.png" alt="Four-stage calibrated content authentication pipeline covering resynthesis, reconstruction metrics, calibrated fusion, and the certification decision." width="2155" height="1322" loading="lazy" decoding="async">
+          </a>
+          <figcaption><span>Figure 2</span> The complete pipeline. Higher A-index values indicate that the query is harder for the tested generator to resynthesize.</figcaption>
+        </figure>
+
+        <div class="explorer reveal" aria-labelledby="explorer-title">
+          <div class="explorer-copy">
+            <p class="section-index">INTERACTIVE EXPLAINER</p>
+            <h3 id="explorer-title">Explore the decision boundary.</h3>
+            <p>Move the example A-index and switch between the reported SD3 Medium safety and security thresholds.</p>
+            <div class="threshold-options" aria-label="Threshold mode">
+              <button type="button" class="threshold-option is-active" data-threshold="0.0365" aria-pressed="true">Safety <span>0.0365</span></button>
+              <button type="button" class="threshold-option" data-threshold="0.038" aria-pressed="false">Security <span>0.0380</span></button>
+            </div>
+            <p class="explorer-footnote">Close-up shown from 0 to 0.06; the complete A-index spans 0 to 1. The security threshold accounts for the evaluated bounded attack.</p>
+          </div>
+
+          <div class="meter-card" style="--score-position: 50%; --threshold-position: 60.833%;">
+            <div class="meter-readout">
+              <div><span>EXAMPLE A-INDEX</span><output id="scoreValue" for="scoreInput">0.0300</output></div>
+              <div><span>ACTIVE THRESHOLD</span><output id="thresholdValue">0.0365</output></div>
+            </div>
+            <div class="decision-meter" aria-hidden="true">
+              <span class="zone-label zone-abstain">ABSTAIN</span>
+              <span class="zone-label zone-certify">CERTIFY</span>
+              <i class="threshold-line"><b>τ</b></i>
+              <i class="score-pin"><b></b></i>
+            </div>
+            <div class="meter-scale" aria-hidden="true"><span>0</span><span>0.03</span><span>0.06</span></div>
+            <label class="slider-label" for="scoreInput">Adjust example score</label>
+            <input id="scoreInput" type="range" min="0" max="0.06" value="0.03" step="0.0001">
+            <div class="decision-output is-abstain" id="decisionOutput" aria-live="polite">
+              <span class="decision-symbol" aria-hidden="true">↩</span>
+              <div><strong>Abstain</strong><p>This generator can reproduce the query closely enough that synthetic provenance remains plausible.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section results" id="results">
+      <div class="shell">
+        <div class="section-heading results-heading reveal">
+          <p class="section-index">03 · RESULTS</p>
+          <h2>Static detectors age. <em>Calibration sets the line.</em></h2>
+          <p>The benchmark follows detector generalization over successive generator releases and then stress-tests all 20 detectors with a bounded white-box attack.</p>
+        </div>
+
+        <div class="result-feature reveal">
+          <div class="result-copy">
+            <span class="result-number">01</span>
+            <p class="result-kicker">Generalization over time</p>
+            <h3>The frontier falls from <strong>99.5%</strong> to <strong>76%</strong>.</h3>
+            <p>Across ten generator configurations, the best-performing detector changes from PROBE to SICA to D3 as the generator frontier advances.</p>
+          </div>
+          <figure class="result-chart">
+            <a href="benchmark/plots/frontier_time_unrestricted.png" target="_blank" rel="noreferrer" aria-label="Open the detector accuracy chart at full resolution">
+              <img src="benchmark/plots/frontier_time_unrestricted.png" alt="Detection accuracy over time, with the leading detector falling as newer generators are released." width="704" height="481" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Best unrestricted detection accuracy at each generator release.</figcaption>
+          </figure>
+        </div>
+
+        <div class="result-feature result-feature-reverse reveal">
+          <div class="result-copy">
+            <span class="result-number">02</span>
+            <p class="result-kicker">Adversarial stress test</p>
+            <h3>Every binary detector drops below <strong>2%</strong>.</h3>
+            <p>Under an ℓ∞ PGD attack with ε = 8/255, D3 retains the highest post-attack accuracy at just 1.75%. The calibrated resynthesis score remains separated in the evaluated setting.</p>
+          </div>
+          <figure class="result-chart result-chart-wide">
+            <a href="assets/fig_pgd.png" target="_blank" rel="noreferrer" aria-label="Open the adversarial robustness figure at full resolution">
+              <img src="assets/fig_pgd.png" alt="Detector performance before and after PGD compared with separated Authenticity Index distributions." width="2177" height="1474" loading="lazy" decoding="async">
+            </a>
+            <figcaption>Binary detectors under attack and the corresponding A-index evaluation.</figcaption>
+          </figure>
+        </div>
+
+        <div class="evidence-lab reveal">
+          <div class="evidence-header">
+            <div>
+              <p class="section-index">EVIDENCE VIEWS</p>
+              <h3>Inspect the supporting results.</h3>
+            </div>
+            <div class="result-tabs" role="tablist" aria-label="Supporting result figures">
+              <button id="tab-separation" role="tab" aria-selected="true" aria-controls="panel-separation" tabindex="0">Separation</button>
+              <button id="tab-attack" role="tab" aria-selected="false" aria-controls="panel-attack" tabindex="-1">Attack</button>
+              <button id="tab-social" role="tab" aria-selected="false" aria-controls="panel-social" tabindex="-1">Social study</button>
+            </div>
+          </div>
+
+          <div class="result-panel" id="panel-separation" role="tabpanel" aria-labelledby="tab-separation">
+            <div class="panel-copy">
+              <span class="panel-tag">SD3 MEDIUM</span>
+              <h4>Reconstruction fidelity separates authentic and generated images.</h4>
+              <p>The A-index combines four complementary similarity signals; faithful resynthesis produces lower scores and prompts abstention.</p>
+            </div>
+            <figure>
+              <a href="assets/fig_separation.png" target="_blank" rel="noreferrer"><img src="assets/fig_separation.png" alt="Authenticity Index distributions for real and generated images under SD3 Medium reconstruction." width="1044" height="568" loading="lazy" decoding="async"></a>
+            </figure>
+          </div>
+
+          <div class="result-panel" id="panel-attack" role="tabpanel" aria-labelledby="tab-attack" hidden>
+            <div class="panel-copy">
+              <span class="panel-tag">BEST OF 100</span>
+              <h4>Attack-aware calibration raises the operating threshold.</h4>
+              <p>For SD3 Medium, the threshold moves from 0.0365 to 0.038. The evaluated PGD attacker raises its best candidate from 0.0148 to 0.0154—still below the security threshold.</p>
+            </div>
+            <figure>
+              <a href="assets/fig_pgd.png" target="_blank" rel="noreferrer"><img src="assets/fig_pgd.png" alt="PGD evaluation of binary detectors and Authenticity Index distributions." width="2177" height="1474" loading="lazy" decoding="async"></a>
+            </figure>
+          </div>
+
+          <div class="result-panel" id="panel-social" role="tabpanel" aria-labelledby="tab-social" hidden>
+            <div class="panel-copy">
+              <span class="panel-tag">3,000 IMAGES</span>
+              <h4>Newer thresholds are more selective on unverified social images.</h4>
+              <p>Applied to the same SD3 inversion scores, 1,116 images exceed the SD2.1 threshold versus 55–79 for four newer configurations. These are unverified images, not authenticity labels.</p>
+            </div>
+            <figure class="social-figure">
+              <a href="assets/fig_reddit.png" target="_blank" rel="noreferrer"><img src="assets/fig_reddit.png" alt="Counts of Reddit images exceeding five generator-specific thresholds." width="826" height="634" loading="lazy" decoding="async"></a>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section scope" id="scope">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <p class="section-index">04 · SCOPE</p>
+          <h2>A precise claim is a <em>stronger claim.</em></h2>
+          <p>Content authentication is most useful when the certificate says exactly what was tested—and does not imply more.</p>
+        </div>
+
+        <div class="scope-grid">
+          <article class="scope-card scope-positive reveal">
+            <p class="scope-label"><span aria-hidden="true">✓</span> What certification means</p>
+            <h3>The query resisted faithful resynthesis by every generator in the tested set.</h3>
+            <ul>
+              <li>The operating threshold was set before deployment.</li>
+              <li>The false-certification target applies to the calibrated setting.</li>
+              <li>The tested generator set is part of the certificate.</li>
+            </ul>
+          </article>
+          <article class="scope-card scope-caution reveal">
+            <p class="scope-label"><span aria-hidden="true">!</span> What it does not mean</p>
+            <h3>It is not unconditional proof of provenance against every possible generator.</h3>
+            <ul>
+              <li>Abstention does not establish that an image is fake.</li>
+              <li>Security claims are limited to the evaluated attack model.</li>
+              <li>Threshold exceedance is not a ground-truth label.</li>
+            </ul>
+          </article>
+        </div>
+
+        <blockquote class="scope-quote reveal">
+          <p>Certify relative to what you tested. Abstain when a generator can explain the image.</p>
+          <footer>The operating principle behind calibrated content authentication</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="section citation" id="citation">
+      <div class="shell citation-grid">
+        <div class="citation-copy reveal">
+          <p class="section-index">05 · CITATION</p>
+          <h2>Read, reproduce, <em>build on it.</em></h2>
+          <p>The codebase includes the detector benchmark, white-box attack harnesses, RF-Inversion pipelines, and A-index implementation.</p>
+          <div class="resource-list">
+            <a href="https://arxiv.org/abs/2610.05870" target="_blank" rel="noreferrer"><span>01</span><b>Paper</b><small>arXiv:2610.05870</small><i aria-hidden="true">↗</i></a>
+            <a href="https://github.com/Sarim-MBZUAI/content-authentication" target="_blank" rel="noreferrer"><span>02</span><b>Repository</b><small>Code &amp; benchmark</small><i aria-hidden="true">↗</i></a>
+            <a href="https://github.com/Sarim-MBZUAI/content-authentication#reproducing-the-benchmark" target="_blank" rel="noreferrer"><span>03</span><b>Reproduce</b><small>Evaluation guide</small><i aria-hidden="true">↗</i></a>
+          </div>
+        </div>
+
+        <div class="bibtex-card reveal">
+          <div class="bibtex-top">
+            <span>BIBTEX</span>
+            <button type="button" id="copyBibtex" data-copy-label="Copy citation">
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 5h7v8H5zM3 10H2V3h7v1"/></svg>
+              <span>Copy</span>
+            </button>
+          </div>
+          <pre id="bibtex"><code>@article{hashmi2026certification,
+  title   = {Certification of Real Images through
+             Calibrated Content Authentication},
+  author  = {Hashmi, Sarim and Elsayed, Abdelrahman
+             and Alam, Mohammed Talha and Poppi, Samuele
+             and Lukas, Nils},
+  journal = {arXiv preprint arXiv:2610.05870},
+  year    = {2026}
+}</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <a class="brand footer-brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">C</span>
+        <span class="brand-copy">Calibrated Content Authentication</span>
+      </a>
+      <p>Research from <strong>MBZUAI</strong><br>Abu Dhabi, United Arab Emirates</p>
+      <div class="footer-links">
+        <a href="https://arxiv.org/abs/2610.05870" target="_blank" rel="noreferrer">Paper ↗</a>
+        <a href="https://github.com/Sarim-MBZUAI/content-authentication" target="_blank" rel="noreferrer">Code ↗</a>
+        <a href="mailto:sarim.hashmi@mbzuai.ac.ae">Contact ↗</a>
+      </div>
+    </div>
+    <div class="shell footer-bottom">
+      <span>© 2026 The authors</span>
+      <span>Built for clarity, calibrated for evidence.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
