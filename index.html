@@ -74,7 +74,10 @@ h1 {
 }
 .authors { font-size: 1.1rem; margin: 0 0 6px; }
 .authors a { white-space: nowrap; margin: 0 8px; }
-.affil { color: var(--muted); margin: 0 0 24px; }
+.affil { margin: 14px 0 24px; }
+.affil img { height: 64px; width: auto; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .affil img { filter: invert(1); } }
+:root[data-theme="dark"] .affil img { filter: invert(1); }
 .links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
@@ -149,7 +152,7 @@ footer { color: var(--muted); font-size: .85rem; text-align: center; padding: 32
     <a href="https://seppia978.github.io/">Samuele Poppi</a>
     <a href="https://nilslukas.github.io">Nils Lukas</a>
   </p>
-  <p class="affil">Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)</p>
+  <p class="affil"><a href="https://mbzuai.ac.ae"><img src="static/images/mbzuai_logo.png" alt="Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)"></a></p>
   <div class="links">
     <a class="btn" href="https://arxiv.org/pdf/2610.05870">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>Paper
