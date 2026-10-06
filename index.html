@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certification of Real Images through Calibrated Content Authentication</title>
+<meta name="description" content="Calibrated content authentication: certify an image as authentic relative to a tested set of generators with a calibrated false-certification rate, and abstain when a generator can faithfully reconstruct it.">
+<meta property="og:title" content="Certification of Real Images through Calibrated Content Authentication">
+<meta property="og:description" content="Certify real images relative to tested generators with a calibrated false-certification rate.">
+<meta property="og:image" content="static/images/fig_concept.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]})"></script>
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f6f7f9;
+  --fg: #1a1d23;
+  --muted: #5b6270;
+  --border: #e3e6eb;
+  --accent: #1f5fbf;
+  --accent-fg: #ffffff;
+  --code-bg: #f1f3f6;
+  --good: #1d7a46;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111318;
+    --bg-alt: #181b22;
+    --fg: #e6e8ec;
+    --muted: #9aa1ad;
+    --border: #2a2f39;
+    --accent: #6ea3ff;
+    --accent-fg: #0b1220;
+    --code-bg: #1c2029;
+    --good: #5fd194;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111318;
+  --bg-alt: #181b22;
+  --fg: #e6e8ec;
+  --muted: #9aa1ad;
+  --border: #2a2f39;
+  --accent: #6ea3ff;
+  --accent-fg: #0b1220;
+  --code-bg: #1c2029;
+  --good: #5fd194;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.65 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+header.hero { text-align: center; padding: 64px 0 32px; }
+h1 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+  line-height: 1.2;
+  margin: 0 auto 20px;
+  max-width: 820px;
+  text-wrap: balance;
+}
+.authors { font-size: 1.1rem; margin: 0 0 6px; }
+.authors a { white-space: nowrap; margin: 0 8px; }
+.affil { color: var(--muted); margin: 0 0 24px; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 18px; border-radius: 999px;
+  background: var(--fg); color: var(--bg);
+  font-weight: 500; font-size: .95rem;
+}
+.btn:hover { text-decoration: none; opacity: .85; }
+.btn svg { width: 18px; height: 18px; fill: currentColor; }
+section { padding: 36px 0; border-top: 1px solid var(--border); }
+section:first-of-type { border-top: none; }
+h2 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-weight: 600; font-size: 1.7rem;
+  margin: 0 0 16px; text-align: center;
+}
+h3 { font-size: 1.1rem; margin: 28px 0 8px; }
+p { margin: 0 0 14px; }
+.lead { font-size: 1.08rem; }
+figure { margin: 24px 0; text-align: center; }
+figure img {
+  max-width: 100%; height: auto; border-radius: 8px;
+  background: #fff; border: 1px solid var(--border);
+}
+figcaption { color: var(--muted); font-size: .92rem; margin-top: 10px; text-align: left; }
+.callout {
+  background: var(--bg-alt); border-left: 3px solid var(--accent);
+  padding: 14px 18px; border-radius: 6px; margin: 20px 0; color: var(--muted);
+}
+.findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.card {
+  background: var(--bg-alt); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px;
+}
+.card .stat { font-size: 1.6rem; font-weight: 700; color: var(--accent); line-height: 1.2; }
+.card .label { font-weight: 600; margin: 4px 0 6px; }
+.card p { color: var(--muted); font-size: .93rem; margin: 0; }
+ol.steps { padding-left: 20px; }
+ol.steps li { margin-bottom: 10px; }
+.table-scroll { overflow-x: auto; margin: 16px 0; border: 1px solid var(--border); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: .92rem; }
+th, td { padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap; }
+th { background: var(--bg-alt); font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+@media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+ul.scope li { margin-bottom: 8px; color: var(--muted); }
+.bib { position: relative; }
+pre {
+  background: var(--code-bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 16px; overflow-x: auto;
+  font: 13px/1.55 "JetBrains Mono", ui-monospace, monospace; margin: 0;
+}
+.copy {
+  position: absolute; top: 10px; right: 10px;
+  border: 1px solid var(--border); background: var(--bg); color: var(--fg);
+  border-radius: 6px; padding: 4px 10px; font: inherit; font-size: .8rem; cursor: pointer;
+}
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+footer { color: var(--muted); font-size: .85rem; text-align: center; padding: 32px 0 48px; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <h1>Certification of Real Images through Calibrated Content Authentication</h1>
+  <p class="authors">
+    <a href="https://sarim-mbzuai.github.io/">Sarim Hashmi</a>
+    <a href="https://scholar.google.com/citations?user=GCS11JkAAAAJ&amp;hl=en">Abdelrahman Elsayed</a>
+    <a href="https://www.linkedin.com/in/mohammed-talha-alam/">Mohammed Talha Alam</a>
+    <a href="https://seppia978.github.io/">Samuele Poppi</a>
+    <a href="https://nilslukas.github.io">Nils Lukas</a>
+  </p>
+  <p class="affil">Mohamed bin Zayed University of Artificial Intelligence (MBZUAI)</p>
+  <div class="links">
+    <a class="btn" href="https://arxiv.org/pdf/2610.05870">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/></svg>Paper
+    </a>
+    <a class="btn" href="https://arxiv.org/abs/2610.05870">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v2H4zm0 4h10v2H4zm0 4h16v2H4zm0 4h10v2H4z"/></svg>arXiv
+    </a>
+    <a class="btn" href="https://github.com/Sarim-MBZUAI/content-authentication">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>Code
+    </a>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section>
+  <figure>
+    <img src="static/images/fig_concept.png" alt="Traditional detection versus calibrated resynthesis">
+    <figcaption>Traditional binary detectors guess “real or fake”. Calibrated resynthesis instead asks whether any known generator can faithfully reconstruct the image, and certifies only when none can.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Abstract</h2>
+  <p class="lead">A generator can reproduce authentic content, including through memorization. When authentic and generated images can be identical, image content alone cannot uniquely establish provenance. We therefore ask a narrower question: <strong>can a known generator faithfully reconstruct the query image?</strong></p>
+  <p>If any tested generator can, synthetic provenance is plausible: the method abstains and returns the reconstruction as evidence. If none can, the method certifies the image as authentic relative to the tested generators, with a calibrated false-certification rate. Attack-aware calibration uses a stricter threshold for the evaluated bounded-perturbation setting.</p>
+  <p>We also evaluate <strong>20 deepfake detectors against 10 generators</strong> released between December 2022 and May 2026, including white-box adversarial attacks, and find that binary detection degrades over time and collapses under bounded perturbations.</p>
+  <div class="callout">Certification is relative to the tested generators and calibration setting. Abstention does not mean an image is fake, and certification is not an unconditional proof of provenance.</div>
+</section>
+
+<section>
+  <h2>Key Findings</h2>
+  <div class="findings">
+    <div class="card">
+      <div class="stat">99.5% → 76%</div>
+      <div class="label">Generalization declines over time</div>
+      <p>Best accuracy among twenty detectors across ten generators. The leading detector shifts from PROBE to SICA to D3.</p>
+    </div>
+    <div class="card">
+      <div class="stat">&lt; 2%</div>
+      <div class="label">Bounded attacks defeat detectors</div>
+      <p>Under an ℓ∞ attack with ε = 8/255, all twenty detectors fall below 2% accuracy; D3 retains the most at 1.75%.</p>
+    </div>
+    <div class="card">
+      <div class="stat">1% FCR</div>
+      <div class="label">Selective certification</div>
+      <p>At a 1% target false-certification rate our method still certifies authentic content, while most baselines have near-zero authentic recall.</p>
+    </div>
+    <div class="card">
+      <div class="stat">23 / 24</div>
+      <div class="label">Robust to transformations</div>
+      <p>Semantic transformations staying below the safety threshold. A best-of-100 PGD attacker moves the A-index only from 0.0148 to 0.0154.</p>
+    </div>
+  </div>
+  <figure>
+    <img src="static/images/frontier_time_unrestricted.png" alt="Detection accuracy declines as new generators are released">
+    <figcaption>Detection accuracy declines as new generators are released.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Method</h2>
+  <ol class="steps">
+    <li><strong>Reconstruct.</strong> For each generator \(G\) in the tested set, use RF-Inversion to reconstruct the query image \(x\), producing \(\tilde{x}_G\).</li>
+    <li><strong>Score.</strong> Compare image and reconstruction with pixel fidelity (PSNR), structure (SSIM), perceptual similarity (\(1-\mathrm{LPIPS}\)) and semantics (CLIP), combined into the <em>Authenticity Index</em> (A-index).</li>
+    <li><strong>Calibrate and certify.</strong> Set each generator’s safety threshold to the \((1-\alpha)\)-quantile of A-index scores on held-out generated samples (\(\alpha = 0.01\)). Certify only when the A-index meets the threshold for <em>every</em> tested generator; otherwise abstain.</li>
+  </ol>
+  $$ s(x, \tilde{x}_G) = \alpha_1\,\mathrm{PSNR} + \alpha_2\,\mathrm{SSIM} + \alpha_3\,(1 - \mathrm{LPIPS}) + \alpha_4\,\mathrm{CLIP} $$
+  $$ A(x, \tilde{x}_G) = \frac{\exp(-\sigma s)}{1 + \exp(-\sigma s)} $$
+  <p>with \(\alpha_1 = -0.0181\), \(\alpha_2 = 1.380\), \(\alpha_3 = -4.058\), \(\alpha_4 = 8.066\) and \(\sigma = 0.9\). Faithful reconstructions receive low scores, making authenticity plausibly deniable. The security threshold applies the same quantile after attacking the calibration samples with ℓ∞-bounded PGD.</p>
+  <figure>
+    <img src="static/images/fig_method.png" alt="Computing the authenticity score">
+    <figcaption>Computing the Authenticity Index from an image and its reconstruction.</figcaption>
+  </figure>
+  <div class="two-col">
+    <figure>
+      <img src="static/images/fig_separation.png" alt="A-index separates real and generated images">
+      <figcaption>For SD3 Medium, reconstruction fidelity separates authentic and generated images.</figcaption>
+    </figure>
+    <div>
+      <h3>Safety thresholds</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Generator configuration</th><th class="num">Threshold</th></tr></thead>
+          <tbody>
+            <tr><td>SD2.1</td><td class="num">0.015</td></tr>
+            <tr><td>SD3 Medium</td><td class="num">0.0365</td></tr>
+            <tr><td>SD3.5 Medium</td><td class="num">0.0365</td></tr>
+            <tr><td>FLUX.1 Dev</td><td class="num">0.035</td></tr>
+            <tr><td>FLUX.1 Dev + Realism LoRA</td><td class="num">0.038</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="color:var(--muted);font-size:.92rem">Certification takes 11.67 s per image per generator on one NVIDIA RTX 5000 Ada.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Results</h2>
+
+  <h3>Adversarial robustness</h3>
+  <p>White-box PGD with ε = 8/255 on 2,000 images (1,000 fake, 1,000 real, 512×512). Only samples classified correctly before the attack are perturbed.</p>
+  <figure>
+    <img src="static/images/fig_pgd.png" alt="PGD collapses binary detectors but preserves separated A-index distributions">
+    <figcaption>PGD perturbations collapse binary detectors, while A-index distributions remain separated.</figcaption>
+  </figure>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Detector</th><th class="num">Acc. before (%)</th><th class="num">Acc. after (%)</th><th class="num">Attack success, fake (%)</th><th class="num">Attack success, real (%)</th></tr></thead>
+      <tbody>
+        <tr><td>OmniAID</td><td class="num">93.25</td><td class="num">0.00</td><td class="num">100.0</td><td class="num">100.0</td></tr>
+        <tr><td>D3</td><td class="num">83.90</td><td class="num">1.75</td><td class="num">96.7</td><td class="num">98.8</td></tr>
+        <tr><td>SICA</td><td class="num">82.00</td><td class="num">0.00</td><td class="num">100.0</td><td class="num">100.0</td></tr>
+        <tr><td>AEROBLADE†</td><td class="num">77.80</td><td class="num">1.50</td><td class="num">100.0</td><td class="num">96.1</td></tr>
+        <tr><td>DDA</td><td class="num">77.55</td><td class="num">0.20</td><td class="num">100.0</td><td class="num">99.6</td></tr>
+        <tr><td>PROBE</td><td class="num">76.45</td><td class="num">0.05</td><td class="num">100.0</td><td class="num">99.9</td></tr>
+        <tr><td>DEAR</td><td class="num">70.50</td><td class="num">0.00</td><td class="num">100.0</td><td class="num">100.0</td></tr>
+        <tr><td>WaRPAD†</td><td class="num">68.90</td><td class="num">0.75</td><td class="num">97.8</td><td class="num">100.0</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="color:var(--muted);font-size:.92rem">Top eight of twenty detectors by pre-attack accuracy. † marks threshold-degenerate detectors. The full table is in the <a href="https://github.com/Sarim-MBZUAI/content-authentication#adversarial-robustness">repository</a>.</p>
+
+  <div class="two-col">
+    <div>
+      <h3>Social-media study</h3>
+      <p>We apply five generator-specific thresholds to the same SD3 inversion scores of 3,000 unverified Reddit images: <strong>1,116</strong> exceed the SD2.1 threshold, against <strong>55–79</strong> for the four newer configurations.</p>
+      <p style="color:var(--muted);font-size:.92rem">These images are unverified; threshold exceedance does not establish their true provenance.</p>
+    </div>
+    <figure>
+      <img src="static/images/fig_reddit.png" alt="Reddit images exceeding each generator's threshold">
+    </figure>
+  </div>
+
+  <h3>Preliminary video evaluation</h3>
+  <p>On 100 videos from Deepfake-Eval-2024 (50 authentic, 50 generated), video detectors transfer poorly, while frame-aggregated A-index scores preserve the image-level ordering.</p>
+  <div class="table-scroll">
+    <table>
+      <thead><tr><th>Model</th><th class="num">AUC</th><th class="num">Prec.</th><th class="num">Rec.</th><th class="num">F1</th></tr></thead>
+      <tbody>
+        <tr><td>GenConViT</td><td class="num">0.615</td><td class="num">0.59</td><td class="num">0.49</td><td class="num">0.53</td></tr>
+        <tr><td>FTCN</td><td class="num">0.483</td><td class="num">0.50</td><td class="num">0.64</td><td class="num">0.40</td></tr>
+        <tr><td>StyleFlow</td><td class="num">0.509</td><td class="num">0.53</td><td class="num">0.42</td><td class="num">0.47</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Scope</h2>
+  <ul class="scope">
+    <li>The false-certification rate concerns generated content incorrectly certified as authentic; it is distinct from classification accuracy and from the fraction of authentic images certified.</li>
+    <li>Certification depends on the tested generators, inversion procedure and calibration setting, and does not establish provenance against every possible generator.</li>
+    <li>The security evaluation covers bounded perturbations under the evaluated attack setting, not arbitrary adversarial transformations.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>BibTeX</h2>
+  <div class="bib">
+    <button class="copy" type="button" onclick="copyBib(this)">Copy</button>
+<pre id="bibtex">@article{hashmi2026certification,
+  title         = {Certification of Real Images through Calibrated Content Authentication},
+  author        = {Hashmi, Sarim and Elsayed, Abdelrahman and Alam, Mohammed Talha and Poppi, Samuele and Lukas, Nils},
+  journal       = {arXiv preprint arXiv:2610.05870},
+  year          = {2026},
+  eprint        = {2610.05870},
+  archivePrefix = {arXiv},
+  url           = {https://arxiv.org/abs/2610.05870}
+}</pre>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  © 2026 the authors · <a href="https://github.com/Sarim-MBZUAI/content-authentication">Code on GitHub</a>
+</footer>
+
+<script>
+function copyBib(btn) {
+  const text = document.getElementById('bibtex').innerText;
+  const done = () => { btn.textContent = 'Copied'; setTimeout(() => btn.textContent = 'Copy', 1500); };
+  if (navigator.clipboard) navigator.clipboard.writeText(text).then(done).catch(() => {});
+}
+</script>
+</body>
+</html>
